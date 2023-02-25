@@ -1,10 +1,10 @@
-package br.com.aps.olookinhomeu.model.PecaDeRoupa;
+package br.com.aps.olookinhomeu.model.PecaDeRoupaSuperior;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "PecasDeRoupa")
-public class PecaDeRoupa {
+@Table(name = "PecasDeRoupaSuperiores")
+public class PecaDeRoupaSuperior {
 
     @Id
     @Column(name = "id")
