@@ -14,9 +14,6 @@ public class PecaDeRoupaInferior {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "tipo")
-    private String tipo;
-
     @Lob
     private byte[] imagem;
 
@@ -34,14 +31,6 @@ public class PecaDeRoupaInferior {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public byte[] getImagem() {

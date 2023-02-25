@@ -19,7 +19,6 @@ public class CadastroCalcado{
         Calcado calcado = new Calcado();
 
         calcado.setNome(nome);
-        calcado.setTipo(tipo);
         calcado.setImagem(imagemData);
 
         repositorioCalcado.addCalcado(calcado);

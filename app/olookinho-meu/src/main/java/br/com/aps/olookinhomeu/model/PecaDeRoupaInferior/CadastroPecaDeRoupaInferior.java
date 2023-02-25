@@ -19,7 +19,6 @@ public class CadastroPecaDeRoupaInferior{
         PecaDeRoupaInferior pecaDeRoupaInferior = new PecaDeRoupaInferior();
 
         pecaDeRoupaInferior.setNome(nome);
-        pecaDeRoupaInferior.setTipo(tipo);
         pecaDeRoupaInferior.setImagem(imagemData);
 
         repositorioPecaDeRoupaInferior.addPecaDeRoupaInferior(pecaDeRoupaInferior);

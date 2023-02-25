@@ -19,7 +19,6 @@ public class CadastroPecaDeRoupaSuperior{
         PecaDeRoupaSuperior pecaDeRoupaSuperior = new PecaDeRoupaSuperior();
 
         pecaDeRoupaSuperior.setNome(nome);
-        pecaDeRoupaSuperior.setTipo(tipo);
         pecaDeRoupaSuperior.setImagem(imagemData);
 
         repositorioPecaDeRoupaSuperior.addPecaDeRoupaSuperior(pecaDeRoupaSuperior);
