@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface IRepositorioPecaDeRoupa {
    
-    void deletarPecaDeRoupa(long id)
     void deletarPecaDeRoupa(long id);
     void addPecaDeRoupa(PecaDeRoupa pecaDeRoupa);
+    List<PecaDeRoupa> consultarPecasDeRoupa();
+    
 }
