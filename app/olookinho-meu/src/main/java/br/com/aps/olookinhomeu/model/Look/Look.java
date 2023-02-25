@@ -1,8 +1,8 @@
 package br.com.aps.olookinhomeu.model.Look;
 
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
-
 import java.util.List;
+
+import br.com.aps.olookinhomeu.model.PecaDeRoupaSuperior.PecaDeRoupaSuperior;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,7 +18,7 @@ public class Look {
     private String nome;
 
     @Column(name = "pecas")
-    private List<PecaDeRoupa> pecasDeRoupas;
+    private List<PecaDeRoupaSuperior> pecasDeRoupas;
 
     public Long getId() {
         return id;
@@ -36,11 +36,11 @@ public class Look {
         this.nome = nome;
     }
 
-    public List<PecaDeRoupa> getPecasDeRoupa(){
+    public List<PecaDeRoupaSuperior> getPecasDeRoupa(){
         return pecasDeRoupas;
     }
 
-    public void setPecasDeRoupa(List<PecaDeRoupa> pecasDeRoupas){
+    public void setPecasDeRoupa(List<PecaDeRoupaSuperior> pecasDeRoupas){
         this.pecasDeRoupas = pecasDeRoupas;
     }
 }
