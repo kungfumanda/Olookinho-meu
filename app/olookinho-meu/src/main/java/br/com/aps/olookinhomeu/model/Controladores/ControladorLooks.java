@@ -1,12 +1,40 @@
 package br.com.aps.olookinhomeu.model.Controladores;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
 
-import br.com.aps.olookinhomeu.model.Fachada.Fachada;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Controller
+import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
+import br.com.aps.olookinhomeu.model.Look.CadastroLook;
+import br.com.aps.olookinhomeu.model.Look.Look;
+
+@Component
 public class ControladorLooks {
 
-	private Fachada fachada;
+	@Autowired
+	private CadastroLook cadastroLook;
+
+	public void adicionarLook(String nome, List<PecaDeRoupa> pecasDeRoupa){
+		cadastroLook.addLook(nome, pecasDeRoupa);
+	}
+
+	public void editarLook(String nome, PecaDeRoupa pecaDeRoupa, Long idLook){
+		
+
+
+
+
+
+	}
+
+	public List<Look> listarLooks(){
+		return cadastroLook.consultarLooks();
+
+	}
+
+	public void deletarLook(Long idLook){
+		cadastroLook.deletarLook(idLook);
+	}
 	
 }
