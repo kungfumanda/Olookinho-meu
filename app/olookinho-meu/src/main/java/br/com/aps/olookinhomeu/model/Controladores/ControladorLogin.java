@@ -1,14 +1,12 @@
 package br.com.aps.olookinhomeu.model.Controladores;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import br.com.aps.olookinhomeu.model.Fachada.Fachada;
 
-@Controller
+@Component
 public class ControladorLogin {
 
 	private Fachada fachada;
 	
-	
-
 }

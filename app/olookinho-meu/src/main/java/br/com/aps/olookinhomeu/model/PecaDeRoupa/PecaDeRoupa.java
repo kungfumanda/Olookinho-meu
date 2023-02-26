@@ -1,10 +1,10 @@
-package br.com.aps.olookinhomeu.model.PecaDeRoupaSuperior;
+package br.com.aps.olookinhomeu.model.PecaDeRoupa;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "PecasDeRoupaSuperiores")
-public class PecaDeRoupaSuperior {
+@Table(name = "PecasDeRoupa")
+public abstract class PecaDeRoupa {
 
     @Id
     @Column(name = "id")
@@ -13,6 +13,9 @@ public class PecaDeRoupaSuperior {
 
     @Column(name = "nome")
     private String nome;
+
+    @Column(name = "tipo")
+    private String tipo;
 
     @Lob
     private byte[] imagem;
@@ -31,6 +34,14 @@ public class PecaDeRoupaSuperior {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public byte[] getImagem() {
