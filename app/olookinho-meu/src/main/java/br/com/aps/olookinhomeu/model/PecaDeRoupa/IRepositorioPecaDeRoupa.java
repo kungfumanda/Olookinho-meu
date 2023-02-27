@@ -6,7 +6,7 @@ public interface IRepositorioPecaDeRoupa {
    
     void deletarPecaDeRoupa(Long id);
     void addPecaDeRoupa(PecaDeRoupa pecaDeRoupa);
-    List<PecaDeRoupa> consultarPecaDeRoupa();
+    List<PecaDeRoupa> consultarPecasDeRoupa();
     PecaDeRoupa consultarPecaDeRoupaPeloID(Long id);
     
 }

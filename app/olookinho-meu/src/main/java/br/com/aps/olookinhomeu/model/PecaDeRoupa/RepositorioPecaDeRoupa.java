@@ -25,7 +25,7 @@ public class RepositorioPecaDeRoupa implements IRepositorioPecaDeRoupa {
 	}
 
 	@Override
-	public List<PecaDeRoupa> consultarPecaDeRoupa() {
+	public List<PecaDeRoupa> consultarPecasDeRoupa() {
 		return pecaDeRoupaDAO.findAll();
 	}
 

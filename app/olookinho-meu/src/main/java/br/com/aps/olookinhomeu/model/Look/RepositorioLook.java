@@ -18,7 +18,7 @@ public class RepositorioLook implements IRepositorioLook {
     }
 
     @Override
-    public void atualizarLook(Look look) { // lembrar de ver bd
+    public void editarLook(Look look) { // lembrar de ver bd
         this.lookDAO.save(look);
     }
 
@@ -34,7 +34,7 @@ public class RepositorioLook implements IRepositorioLook {
         if(lookOptional.isPresent()){
             look = lookOptional.get();
         } else {
-            throw new RuntimeException("Não existe look  que corresponda ao id: "  + id);
+            throw new RuntimeException("Nao existe look  que corresponda ao id: "  + id);
         }
         return look;
     }

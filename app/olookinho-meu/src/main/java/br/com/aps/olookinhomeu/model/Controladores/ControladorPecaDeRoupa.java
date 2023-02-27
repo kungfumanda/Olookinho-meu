@@ -20,12 +20,12 @@ public class ControladorPecaDeRoupa {
         cadastroPecaDeRoupa.deletarPecaDeRoupa(id);
     }
 
-	public void cadastrarPecaDeRoupa(String nome, String tipo, String imagemPath) throws IOException {
+	public void cadastrarPecaDeRoupa(String nome, String tipo, byte[] imagemPath) throws IOException {
 		cadastroPecaDeRoupa.addPecaDeRoupa(nome, tipo, imagemPath);
 	}
 
 	public List<PecaDeRoupa> consultarPecasDeRoupa() {
-		return cadastroPecaDeRoupa.consultarPecaDeRoupa();
+		return cadastroPecaDeRoupa.consultarPecasDeRoupa();
 	}
 
 	public PecaDeRoupa consultarPecaDeRoupaPeloId(Long id) {
