@@ -6,7 +6,7 @@ public interface IRepositorioLook {
 
     void addLook(Look look);
 
-    void atualizarLook(Look look);
+    void editarLook(Look look);
 
     List<Look> consultarLooks();
 

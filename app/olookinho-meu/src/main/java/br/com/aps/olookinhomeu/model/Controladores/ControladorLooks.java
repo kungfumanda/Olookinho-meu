@@ -19,12 +19,8 @@ public class ControladorLooks {
 		cadastroLook.addLook(nome, pecasDeRoupa);
 	}
 
-	public void editarLook(String nome, PecaDeRoupa pecaDeRoupa, Long idLook){
-		
-
-
-
-
+	public void editarLook(Long idLook ,String nome,  List<PecaDeRoupa> pecasDeRoupa){
+		cadastroLook.editarLook(idLook, nome, pecasDeRoupa);
 
 	}
 

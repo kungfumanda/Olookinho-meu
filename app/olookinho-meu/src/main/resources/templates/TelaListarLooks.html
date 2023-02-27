@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div>
+      <div>
+        <h1>Lista de Looks</h1>
+      </div>
+      <a th:href="@{/TelaEditarLook}" class="btn btn-primary btn-sm mb-3"> Criar Lista </a>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nome do Look</th>
+            <th>Peca de Roupa Superior</th>
+            <th>Peca de Roupa Inferior</th>
+            <th>Calcado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="Look = ${Looks}">
+            <td th:text="${look.nome}"></td>
+            <td th:text="${look.peca_de_roupa_superior}"></td>
+            <td th:text="${look.peca_de_roupa_inferior}"></td>
+            <td th:text="${look.calcado}"></td>
+            <td>
+                <a th:href="@{/mostrarTelaEditarLook}" class="btn btn-primary btn-sm mb-3"> Editar Look </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

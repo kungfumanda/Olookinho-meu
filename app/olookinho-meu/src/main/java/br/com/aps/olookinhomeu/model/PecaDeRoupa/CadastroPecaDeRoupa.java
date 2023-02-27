@@ -20,22 +20,11 @@ public class CadastroPecaDeRoupa{
     @Autowired
     private IRepositorioPecaDeRoupa repositorioPecaDeRoupa;
 
-    public void addPecaDeRoupa(String nome, String tipo, String imagemPath) throws IOException{
-        PecaDeRoupa pecaDeRoupa = new PecaDeRoupa();
+    public void addPecaDeRoupa(String nome, String tipo, byte[] imagemData) throws IOException{
+    
+        PecaDeRoupa pecaDeRoupa = gerarPecadeRoupa(tipo);
         
-        byte[] imagemData = Files.readAllBytes(Paths.get(imagemPath));
-
         pecaDeRoupa.setNome(nome);
-        switch (tipo) {
-            case "Superior":
-                PecaDeRoupa pecaSuperior = fabricaSuperior.createPecaDeRoupa();
-            case "Inferior":
-                PecaDeRoupa pecaInferior = fabricaInferior.createPecaDeRoupa();
-            case "Calcado":
-                PecaDeRoupa pecaCalcado = fabricaCalcado.createPecaDeRoupa();
-            default:
-                pecaDeRoupa.setTipo(tipo);
-        }
         pecaDeRoupa.setImagem(imagemData);
 
         repositorioPecaDeRoupa.addPecaDeRoupa(pecaDeRoupa);
@@ -45,11 +34,30 @@ public class CadastroPecaDeRoupa{
         repositorioPecaDeRoupa.deletarPecaDeRoupa(id);
     }
 
-    public List<PecaDeRoupa> consultarPecaDeRoupa(){
-        return repositorioPecaDeRoupa.consultarPecaDeRoupa();
+    public List<PecaDeRoupa> consultarPecasDeRoupa(){
+        return repositorioPecaDeRoupa.consultarPecasDeRoupa();
     }
 
     public PecaDeRoupa consultarPecaDeRoupaPeloId(Long id) {
     return repositorioPecaDeRoupa.consultarPecaDeRoupaPeloID(id);
+    }
+
+    private PecaDeRoupa gerarPecadeRoupa(String tipo) {
+        PecaDeRoupa pecaDeRoupa = new PecaDeRoupa();
+
+        switch (tipo) {
+            case "Superior":
+                pecaDeRoupa = fabricaSuperior.createPecaDeRoupa();
+                 break;
+            case "Inferior":
+                pecaDeRoupa = fabricaInferior.createPecaDeRoupa();
+                 break;
+            case "Calcado":
+                pecaDeRoupa = fabricaCalcado.createPecaDeRoupa();
+                 break;
+            default:
+                break;
+        }
+        return pecaDeRoupa;
     }
 }

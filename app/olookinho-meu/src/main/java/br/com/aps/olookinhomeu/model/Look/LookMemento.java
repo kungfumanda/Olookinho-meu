@@ -19,31 +19,15 @@ public class LookMemento{
         return nome;
     }
     
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
     public PecaDeRoupa getPecaDeRoupaSuperior() {
         return pecaDeRoupaSuperior;
-    }
-    
-    public void setPecaDeRoupaSuperior(PecaDeRoupa pecaDeRoupaSuperior) {
-        this.pecaDeRoupaSuperior = pecaDeRoupaSuperior;
     }
     
     public PecaDeRoupa getPecaDeRoupaInferior() {
         return pecaDeRoupaInferior;
     }
     
-    public void setPecaDeRoupaInferior(PecaDeRoupa pecaDeRoupaInferior) {
-        this.pecaDeRoupaInferior = pecaDeRoupaInferior;
-    }
-    
     public PecaDeRoupa getCalcado() {
         return calcado;
-    }
-    
-    public void setCalcado(PecaDeRoupa calcado) {
-        this.calcado = calcado;
     }
 }

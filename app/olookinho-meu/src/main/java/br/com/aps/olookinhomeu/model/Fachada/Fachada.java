@@ -23,16 +23,16 @@ public class Fachada {
 	@Autowired
 	private ControladorPecaDeRoupa controladorPecaDeRoupa;
 	
-	public void loginUsuario() {
-		//oq vamos colocar aqui?? nao tem classe de cadastrodelogin
-	}
+	public Boolean loginUsuario() {
+        return controladorLogin.requisitarLogin();
+    }	
 		
 	public void criarLook(String nome, List<PecaDeRoupa> pecasDeRoupa) {
 		 controladorLook.adicionarLook(nome, pecasDeRoupa);
 	}
 	
-	public void editarLook() {
-		//nao foi implementado ainda
+	public void editarLook(Long id,String nome,  List<PecaDeRoupa> pecasDeRoupas) {
+		controladorLook.editarLook(id, nome, pecasDeRoupas);
 	}
 	
 	public List<Look> listarLooks() { 
@@ -43,9 +43,9 @@ public class Fachada {
 		controladorLook.deletarLook(id);
 	}
 
-	public void cadastrarPecaDeRoupa(String nome, String tipo, String imagemPath) throws IOException {
+	public void cadastrarPecaDeRoupa(String nome, String tipo, byte[] imagemData) throws IOException {
 				
-		controladorPecaDeRoupa.cadastrarPecaDeRoupa(nome, tipo, imagemPath);
+		controladorPecaDeRoupa.cadastrarPecaDeRoupa(nome, tipo, imagemData);
 	}
 
 	public void deletarPecaDeRoupa(Long id) {

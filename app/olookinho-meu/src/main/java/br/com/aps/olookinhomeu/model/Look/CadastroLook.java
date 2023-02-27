@@ -10,8 +10,6 @@ import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
 @Component
 public class CadastroLook {
 
-    // Falta criar EditarLook
-
     @Autowired
     private IRepositorioLook repositorioLook;
 
@@ -55,25 +53,29 @@ public class CadastroLook {
         if (selectedLook == null) {
             throw new RuntimeException("Nao ha look com esse ID");
         } else {
-            for (PecaDeRoupa peca : pecasDeRoupa) {
-                String tipo = peca.getTipo();
-
-                switch (tipo) {
-                    case "Calcado":
-                        selectedLook.setCalcado(peca);
-                        break;
-                    case "Superior":
-                        selectedLook.setPecaDeRoupaSuperior(peca);
-                        break;
-                    case "Inferior":
-                        selectedLook.setPecaDeRoupaInferior(peca);
-                        break;
-                    default:
-                        break; // talvez excecao
+            if(!pecasDeRoupa.isEmpty()){
+                for (PecaDeRoupa peca : pecasDeRoupa) {
+                    String tipo = peca.getTipo();
+    
+                    switch (tipo) {
+                        case "Calcado":
+                            selectedLook.setCalcado(peca);
+                            break;
+                        case "Superior":
+                            selectedLook.setPecaDeRoupaSuperior(peca);
+                            break;
+                        case "Inferior":
+                            selectedLook.setPecaDeRoupaInferior(peca);
+                            break;
+                        default:
+                            break; // talvez excecao
+                    }
                 }
             }
+
             selectedLook.setNome(nome);
-            repositorioLook.atualizarLook(selectedLook);
+            
+            repositorioLook.editarLook(selectedLook);
         }
     }
 
