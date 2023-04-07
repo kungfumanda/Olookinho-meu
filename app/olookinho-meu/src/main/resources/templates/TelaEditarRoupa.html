@@ -11,12 +11,12 @@
 
   <body>
     <div class="container">
-      <h1>Cadastrar Peca de Roupa</h1>
+      <h1>Editar Peca de Roupa</h1>
       <form
         class="form"
-        id="cadastrarPecaDeRoupa"
+        id="editarPecaDeRoupa"
         action="#"
-        th:action="@{/pecas-de-roupa/new}"
+        th:action="@{/pecas-de-roupa/edit/{id}(id=${id})}"
         th:object="${PecaDeRoupa}"
         method="POST"
         enctype="multipart/form-data"
@@ -25,6 +25,7 @@
           <label for="nome">nome:</label>
           <input
             type="text"
+            th:field="*{nome}"
             th:value="${nome}"
             id="nome"
             name="nome"
@@ -37,6 +38,7 @@
           <label for="tipo_peca_de_roupa">tipo_peca_de_roupa:</label>
           <select
             id="tipo_peca_de_roupa"
+            th:field="*{tipo}"
             th:value="${tipo}"
             form="cadastrarPecaDeRoupa"
             name="tipo"
@@ -51,6 +53,7 @@
           <input
             type="file"
             id="imagem"
+            th:field="*{nomeImagem}"
             th:value="${imagem}"
             accept="image/*"
             name="imagem"
@@ -59,9 +62,12 @@
         </div>
 
         <div id="imagePreview"></div>
+        
+        <input type="hidden" th:field="*{id}">
 
-        <button type="submit" class="btn btn-info col-2">Cadastrar Peca</button>
-      </form>
+        <button type="submit" class="btn btn-info col-2">Salvar alterações</button>
+        
+    </form>
 
       <script type="text/javascript">
         function previewImage(event) {

@@ -2,6 +2,9 @@ package br.com.aps.olookinhomeu.model.PecaDeRoupa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,14 +23,24 @@ public class CadastroPecaDeRoupa{
     @Autowired
     private IRepositorioPecaDeRoupa repositorioPecaDeRoupa;
 
-    public void addPecaDeRoupa(String nome, String tipo, byte[] imagemData) throws IOException{
+    public void addPecaDeRoupa(String nome, String tipo, MultipartFile imagem) throws IOException{
     
         PecaDeRoupa pecaDeRoupa = gerarPecadeRoupa(tipo);
-        
         pecaDeRoupa.setNome(nome);
-        pecaDeRoupa.setImagem(imagemData);
-
+        if (imagem != null) {
+        setImagem(pecaDeRoupa, imagem);
+        }
         repositorioPecaDeRoupa.addPecaDeRoupa(pecaDeRoupa);
+    }
+
+    private void setImagem(PecaDeRoupa pecaDeRoupa, MultipartFile imagem) throws IOException {
+        String fileName = StringUtils.cleanPath(imagem.getOriginalFilename());
+        try {
+            pecaDeRoupa.setNomeImagem(fileName);
+            pecaDeRoupa.setImagem(imagem.getBytes());             
+        } catch (IOException ex) {
+            throw new IOException("Could not store file " + fileName);
+        }
     }
 
     public void deletarPecaDeRoupa(Long id){
@@ -59,5 +72,14 @@ public class CadastroPecaDeRoupa{
                 break;
         }
         return pecaDeRoupa;
+    }
+
+    public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagemData) throws IOException {
+        PecaDeRoupa pecaDeRoupa = consultarPecaDeRoupaPeloId(id);
+        pecaDeRoupa.setNome(nome);
+        pecaDeRoupa.setTipo(tipo);
+        setImagem(pecaDeRoupa, imagemData);
+        
+        repositorioPecaDeRoupa.salvarPecaDeRoupa(pecaDeRoupa);
     }
 }

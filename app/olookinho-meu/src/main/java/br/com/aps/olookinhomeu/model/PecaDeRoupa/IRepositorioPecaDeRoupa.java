@@ -8,5 +8,6 @@ public interface IRepositorioPecaDeRoupa {
     void addPecaDeRoupa(PecaDeRoupa pecaDeRoupa);
     List<PecaDeRoupa> consultarPecasDeRoupa();
     PecaDeRoupa consultarPecaDeRoupaPeloID(Long id);
+    void salvarPecaDeRoupa(PecaDeRoupa pecaDeRoupa);
     
 }

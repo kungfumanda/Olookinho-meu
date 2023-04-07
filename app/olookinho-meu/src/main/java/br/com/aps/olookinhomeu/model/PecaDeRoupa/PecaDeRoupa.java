@@ -18,7 +18,11 @@ public class PecaDeRoupa {
     private String tipo;
 
     @Lob
+    @Column(name="imagem", length = 1000)
     private byte[] imagem;
+
+    @Column(name = "nomeImagem")
+    private String nomeImagem;
 
     public Long getId() {
         return id;
@@ -44,6 +48,14 @@ public class PecaDeRoupa {
         this.tipo = tipo;
     }
 
+    public String getNomeImagem() {
+        return nomeImagem;
+    }
+
+    public void setNomeImagem(String ni) {
+        this.nomeImagem = ni;
+    }
+
     public byte[] getImagem() {
         return imagem;
     }
@@ -51,4 +63,5 @@ public class PecaDeRoupa {
     public void setImagem(byte[] imagem){
         this.imagem = imagem;
     }
+
 }

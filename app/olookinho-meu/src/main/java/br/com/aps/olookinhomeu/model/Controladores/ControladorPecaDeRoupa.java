@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class ControladorPecaDeRoupa {
         cadastroPecaDeRoupa.deletarPecaDeRoupa(id);
     }
 
-	public void cadastrarPecaDeRoupa(String nome, String tipo, byte[] imagemPath) throws IOException {
-		cadastroPecaDeRoupa.addPecaDeRoupa(nome, tipo, imagemPath);
+	public void cadastrarPecaDeRoupa(String nome, String tipo, MultipartFile imagem) throws IOException {
+		cadastroPecaDeRoupa.addPecaDeRoupa(nome, tipo, imagem);
 	}
 
 	public List<PecaDeRoupa> consultarPecasDeRoupa() {
@@ -31,5 +32,9 @@ public class ControladorPecaDeRoupa {
 	public PecaDeRoupa consultarPecaDeRoupaPeloId(Long id) {
     	return cadastroPecaDeRoupa.consultarPecaDeRoupaPeloId(id);
     }
+
+	public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagem) throws IOException {
+		cadastroPecaDeRoupa.editarPecaDeRoupa(id, nome, tipo, imagem);
+	}
 
 }

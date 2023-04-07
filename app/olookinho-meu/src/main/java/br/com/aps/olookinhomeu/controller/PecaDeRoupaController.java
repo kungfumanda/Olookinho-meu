@@ -1,9 +1,13 @@
 package br.com.aps.olookinhomeu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,27 +16,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import br.com.aps.olookinhomeu.model.Fachada.Fachada;
 import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
+import br.com.aps.olookinhomeu.model.util.ImageUtil;
 
 @RequestMapping("/pecas-de-roupa")
 @Controller
-public class PecaDeRoupaController{
+public class PecaDeRoupaController {
 
-    @Autowired
-    private Fachada fachada;
+	@Autowired
+	private Fachada fachada;
 
 	@GetMapping("")
 	public String consultarPecasDeRoupa(Model model) {
 		List<PecaDeRoupa> pecasDeRoupa = fachada.consultarPecasDeRoupa();
 		model.addAttribute("pecasDeRoupa", pecasDeRoupa);
+		model.addAttribute("imgUtil", new ImageUtil());
 
-		return "TelaListarPecasDeRoupa";
+		return "TelaListarPecaRoupa";
 	}
 
-    @GetMapping("/{id}")
+	@GetMapping("/{id}")
 	public String consultarPecaDeRoupaPeloId(@RequestParam("id") Long id, Model model) {
 		PecaDeRoupa peca = fachada.consultarPecaDeRoupaPeloId(id);
 		if (peca != null) {
@@ -43,24 +50,46 @@ public class PecaDeRoupaController{
 		return "consultarPecaDeRoupaPeloId";
 	}
 
-    @GetMapping("/new")
-	public String cadastrarPecaDeRoupa() {
-		return "TelaCadastrarPecaDeRoupa";
+	@GetMapping("/new")
+	public String showCadastrarPecaDeRoupa(Model model) {
+		model.addAttribute("pecaDeRoupa", new PecaDeRoupa());
+		return "TelaCadastroRoupa";
 	}
 
-	@PostMapping("")
+	@PostMapping("/new")
 	public String cadastrarPecaDeRoupa(@RequestParam("nome") String nome, @RequestParam("tipo") String tipo,
-		@RequestParam("imagem") MultipartFile imagem, Model model) throws IOException {
-
-		fachada.cadastrarPecaDeRoupa(nome, tipo, imagem.getBytes());
+			@RequestParam("imagem") MultipartFile imagem, Model model) throws IOException {
+		
+			try {
+				fachada.cadastrarPecaDeRoupa(nome, tipo, imagem);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
 		model.addAttribute("msg", "Peça de roupa cadastrada com sucesso!");
 
-		return "TelaListarPecasDeRoupa";
+		return "redirect:/pecas-de-roupa";
 	}
 
-    @DeleteMapping("/{id}")
-    public String deletarLook(@PathVariable("id") Long id) {
-        fachada.deletarLook(id);
-        return "TelaListarPecasDeRoupa"; }
+	@GetMapping("/{id}/delete")
+	public String deletarPecaDeRoupa(@PathVariable Long id) {
+		fachada.deletarPecaDeRoupa(id);
+		return "redirect:/pecas-de-roupa";
+	}
+
+	@GetMapping("/{id}/edit")
+	public String editarPecaDeRoupa(@PathVariable Long id, Model model) {
+		model.addAttribute("pecaDeRoupa", fachada.consultarPecaDeRoupaPeloId(id));
+		return "TelaEditarRoupa";
+	}
+
+	@PostMapping("/{id}/edit")
+	public String editarPecaDeRoupa(@PathVariable Long id, @RequestParam("nome") String nome, @RequestParam("tipo") String tipo,
+	@RequestParam("imagem") MultipartFile imagem, Model model) throws IOException {
+		// model.addAttribute("pecaDeRoupa", fachada.consultarPecaDeRoupaPeloId(id));
+		fachada.editarPecaDeRoupa(id, nome, tipo, imagem);
+		return "redirect:/pecas-de-roupa";
+	}
+
 
 }

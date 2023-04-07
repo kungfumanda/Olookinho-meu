@@ -41,6 +41,11 @@ public class RepositorioPecaDeRoupa implements IRepositorioPecaDeRoupa {
         return pecaDeRoupa;
     }
 
+	@Override
+	public void salvarPecaDeRoupa(PecaDeRoupa pecaDeRoupa) {
+		this.pecaDeRoupaDAO.save(pecaDeRoupa);
+	}
+
 	
 	
 }
