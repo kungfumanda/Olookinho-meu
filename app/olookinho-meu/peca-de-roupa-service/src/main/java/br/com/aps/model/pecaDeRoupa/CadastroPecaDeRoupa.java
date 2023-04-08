@@ -1,14 +1,16 @@
-package br.com.aps.olookinhomeu.model.PecaDeRoupa;
+package br.com.aps.model.pecaDeRoupa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.aps.model.pecaDeRoupa.Factories.*;
+import br.com.aps.model.util.ImageUtil;
+
 import java.io.IOException;
 import java.util.*;
 
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.Factories.*;
-import br.com.aps.olookinhomeu.model.util.ImageUtil;
+
 
 @Component
 public class CadastroPecaDeRoupa {

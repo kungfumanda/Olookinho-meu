@@ -1,5 +1,4 @@
-package br.com.aps.olookinhomeu.model.Look;
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
+package br.com.aps.model.look;
 
 import java.util.List;
 import java.util.Set;

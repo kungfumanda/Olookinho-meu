@@ -1,4 +1,4 @@
-package br.com.aps.olookinhomeu.model.PecaDeRoupa;
+package br.com.aps.model.pecaDeRoupa;
 
 import jakarta.persistence.Entity;
 

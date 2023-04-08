@@ -1,9 +1,7 @@
-package br.com.aps.olookinhomeu.model.PecaDeRoupa;
+package br.com.aps.model.pecaDeRoupa;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import br.com.aps.olookinhomeu.model.Look.Look;
 
 import jakarta.persistence.*;
 
@@ -29,14 +27,14 @@ public class PecaDeRoupa {
     @Column(name = "nomeImagem")
     private String nomeImagem;
 
-    @ManyToMany(mappedBy = "pecasDeRoupa")
-    private Set<Look> looks = new HashSet<>();
+    // @ManyToMany(mappedBy = "pecasDeRoupa")
+    // private Set<Look> looks = new HashSet<>();
     
-    public void removeLook(Look look){
-        if (looks.remove(look)){
-            look.removerPecasDeRoupa(this);
-        }
-    }
+    // public void removeLook(Look look){
+    //     if (looks.remove(look)){
+    //         look.removerPecasDeRoupa(this);
+    //     }
+    // }
 
     public Long getId() {
         return id;
@@ -78,12 +76,12 @@ public class PecaDeRoupa {
         this.imagem = imagem;
     }
     
-    public Set<Look> getLooks() {
-        return looks;
-    }
+    // public Set<Look> getLooks() {
+    //     return looks;
+    // }
 
-    public void setLooks(Set<Look> looks) {
-        this.looks = looks;
-    }
+    // public void setLooks(Set<Look> looks) {
+    //     this.looks = looks;
+    // }
 
 }

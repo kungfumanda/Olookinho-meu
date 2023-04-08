@@ -1,9 +1,7 @@
-package br.com.aps.olookinhomeu.model.Look;
-
+package br.com.aps.model.look;
 import java.util.HashSet;
 import java.util.Set;
 
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
 import jakarta.persistence.*;
 
 @Entity

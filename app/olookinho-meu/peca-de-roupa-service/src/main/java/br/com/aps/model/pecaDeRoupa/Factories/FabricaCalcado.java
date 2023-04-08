@@ -1,7 +1,7 @@
-package br.com.aps.olookinhomeu.model.PecaDeRoupa.Factories;
+package br.com.aps.model.pecaDeRoupa.Factories;
 
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.Calcado;
+import br.com.aps.model.pecaDeRoupa.Calcado;
+import br.com.aps.model.pecaDeRoupa.PecaDeRoupa;
 
 public class FabricaCalcado implements Factory {
     public PecaDeRoupa createPecaDeRoupa() {

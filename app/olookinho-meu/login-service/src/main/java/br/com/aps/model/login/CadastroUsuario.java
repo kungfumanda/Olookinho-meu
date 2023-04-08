@@ -1,4 +1,4 @@
-package  br.com.aps.olookinhomeu.model.Usuario;
+package  br.com.aps.model.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,3 +1,5 @@
+package br.com.aps.model.util;
+
 
 import java.io.IOException;
 import java.util.Base64;

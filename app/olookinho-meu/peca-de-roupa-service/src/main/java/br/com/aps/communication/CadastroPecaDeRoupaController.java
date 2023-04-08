@@ -1,4 +1,4 @@
-package br.com.aps.olookinhomeu.controller;
+package br.com.aps.communication;
 
 import java.io.IOException;
 
@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.aps.olookinhomeu.model.Fachada.Fachada;
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
+import br.com.aps.model.Fachada;
+import br.com.aps.model.pecaDeRoupa.PecaDeRoupa;
+
 
 @RequestMapping("/pecas-de-roupa")
 @Controller

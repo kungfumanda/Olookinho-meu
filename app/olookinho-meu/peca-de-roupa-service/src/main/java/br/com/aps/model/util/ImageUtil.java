@@ -1,4 +1,4 @@
-package br.com.aps.olookinhomeu.model.util;
+package br.com.aps.model.util;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -6,7 +6,7 @@ import java.util.Base64;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
+import br.com.aps.model.pecaDeRoupa.PecaDeRoupa;
 
 public class ImageUtil {
     public String getImgData(byte[] byteData) {

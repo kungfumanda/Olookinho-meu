@@ -1,4 +1,4 @@
-package br.com.aps.olookinhomeu.controller;
+package br.com.aps.communication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import br.com.aps.model.Fachada;
+import br.com.aps.model.pecaDeRoupa.PecaDeRoupa;
+import br.com.aps.model.util.ImageUtil;
+
 import java.util.List;
-import br.com.aps.olookinhomeu.model.Fachada.Fachada;
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
-import br.com.aps.olookinhomeu.model.util.ImageUtil;
+
+
 
 @RequestMapping("/pecas-de-roupa")
 @Controller
@@ -21,7 +25,7 @@ public class PecaDeRoupaController {
 
 	@GetMapping("")
 	public String consultarPecasDeRoupa(Model model) {
-		List<PecaDeRoupa> pecasDeRoupa = fachada.consultarPecasDeRoupa();
+		List<PecaDeRoupa> pecasDeRoupa = Fachada.consultarPecasDeRoupa();
 
 		model.addAttribute("pecasDeRoupa", pecasDeRoupa);
 		model.addAttribute("imgUtil", new ImageUtil());

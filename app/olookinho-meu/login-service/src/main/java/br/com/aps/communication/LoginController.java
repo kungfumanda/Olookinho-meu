@@ -1,4 +1,4 @@
-package  br.com.aps.olookinhomeu.controller;
+package  br.com.aps.communication;
 
 import  br.com.aps.olookinhomeu.model.Fachada.Fachada;
 import org.springframework.beans.factory.annotation.Autowired;

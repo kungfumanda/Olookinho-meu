@@ -1,4 +1,4 @@
-package br.com.aps.olookinhomeu.model.PecaDeRoupa;
+package br.com.aps.model.pecaDeRoupa;
 
 import java.util.List;
 import java.util.Optional;

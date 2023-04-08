@@ -1,4 +1,4 @@
-package br.com.aps.olookinhomeu.model.Look;
+package br.com.aps.model.look;
 
 import java.util.List;
 import java.util.Set;
@@ -6,7 +6,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
 
 @Component
 public class CadastroLook {

@@ -1,4 +1,4 @@
-package br.com.aps.olookinhomeu.model.Controladores;
+package br.com.aps.model.pecaDeRoupa;
 
 import java.io.IOException;
 
@@ -8,8 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.CadastroPecaDeRoupa;
-import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
 
 @Component
 public class ControladorPecaDeRoupa {
