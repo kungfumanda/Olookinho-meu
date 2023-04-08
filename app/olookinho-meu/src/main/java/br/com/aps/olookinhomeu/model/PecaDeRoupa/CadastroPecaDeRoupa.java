@@ -88,13 +88,5 @@ public class CadastroPecaDeRoupa{
         }
         
         repositorioPecaDeRoupa.salvarPecaDeRoupa(editedPecaDeRoupa);
-
-            
-        // PecaDeRoupa pecaDeRoupa = gerarPecadeRoupa(tipo);
-        // pecaDeRoupa.setNome(nome);
-        // if (imagem != null) {
-        // setImagem(pecaDeRoupa, imagem);
-        // }
-        // repositorioPecaDeRoupa.addPecaDeRoupa(pecaDeRoupa);
     }
 }

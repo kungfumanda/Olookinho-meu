@@ -1,5 +1,10 @@
 package br.com.aps.olookinhomeu.model.PecaDeRoupa;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import br.com.aps.olookinhomeu.model.Look.Look;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +28,9 @@ public class PecaDeRoupa {
 
     @Column(name = "nomeImagem")
     private String nomeImagem;
+
+    @ManyToMany(mappedBy = "pecasDeRoupa")
+    private Set<Look> looks = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -62,6 +70,14 @@ public class PecaDeRoupa {
 
     public void setImagem(byte[] imagem){
         this.imagem = imagem;
+    }
+    
+    public Set<Look> getLooks() {
+        return looks;
+    }
+
+    public void setLooks(Set<Look> looks) {
+        this.looks = looks;
     }
 
 }

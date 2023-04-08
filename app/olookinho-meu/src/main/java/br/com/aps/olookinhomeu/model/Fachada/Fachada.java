@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.aps.olookinhomeu.model.Controladores.ControladorLogin;
+import br.com.aps.olookinhomeu.model.Controladores.ControladorLook;
 import br.com.aps.olookinhomeu.model.Controladores.ControladorPecaDeRoupa;
+import br.com.aps.olookinhomeu.model.Look.Look;
 import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
 
 @Component
@@ -19,6 +21,9 @@ public class Fachada {
 
 	@Autowired
 	private ControladorPecaDeRoupa controladorPecaDeRoupa;
+	
+	@Autowired
+	private ControladorLook controladorLook;
 	
 	public Boolean loginUsuario() {
         return controladorLogin.requisitarLogin();
@@ -43,6 +48,10 @@ public class Fachada {
 
 	 public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagemData)  throws IOException{
 	 	controladorPecaDeRoupa.editarPecaDeRoupa(id, nome, tipo, imagemData);
+	}
+
+	public List<Look> consultarLooks(){
+		return controladorLook.consultarLooks();
 	}
 
 

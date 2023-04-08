@@ -14,8 +14,8 @@
       <div>
         <h1>Lista de Looks</h1>
       </div>
-      <a th:href="@{/TelaEditarLook}" class="btn btn-primary btn-sm mb-3"> Criar Lista </a>
-      <table class="table">
+      <a th:href="@{/looks/new}" class="btn btn-primary btn-sm mb-3"> Add Peca de Roupa </a>
+      <table class="table" th:if="${looks.size > 0}">
         <thead>
           <tr>
             <th>Nome do Look</th>
@@ -25,17 +25,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="Look = ${Looks}">
+          <tr th:each="look : ${looks}">
             <td th:text="${look.nome}"></td>
-            <td th:text="${look.peca_de_roupa_superior}"></td>
-            <td th:text="${look.peca_de_roupa_inferior}"></td>
-            <td th:text="${look.calcado}"></td>
-            <td>
-                <a th:href="@{/mostrarTelaEditarLook}" class="btn btn-primary btn-sm mb-3"> Editar Look </a>
-            </td>
           </tr>
         </tbody>
       </table>
+      <p style="color: red;" th:if="${looks.size == 0}">Não temos looks.</p>
     </div>
   </body>
 </html>
