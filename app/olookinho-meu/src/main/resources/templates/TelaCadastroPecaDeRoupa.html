@@ -11,6 +11,7 @@
 
   <body>
     <div class="container">
+    
       <h1>Cadastrar Peca de Roupa</h1>
       <form
         class="form"
@@ -21,6 +22,8 @@
         method="POST"
         enctype="multipart/form-data"
       >
+      </div>
+
         <div>
           <label for="nome">Nome da Peça:</label>
           <input
@@ -64,7 +67,12 @@
 
         <button type="submit" class="btn btn-info col-2 mt-2">Cadastrar Peca</button>
         <button class="btn btn-outline-info col-2 mt-2" onclick="history.back()"> Voltar</button>
+
+        <div th:if="${errorMsg}" class="alert alert-danger" role="alert">
+          <p th:text="${errorMsg}"></p>
+      </div>
       </form>
+
 
       <script type="text/javascript">
         function previewImage(event) {
