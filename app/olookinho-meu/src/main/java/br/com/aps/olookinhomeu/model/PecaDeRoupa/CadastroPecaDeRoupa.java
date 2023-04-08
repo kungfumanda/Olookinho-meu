@@ -5,14 +5,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import java.io.IOException;
 import java.util.*;
 
 import br.com.aps.olookinhomeu.model.PecaDeRoupa.Factories.*;
 
 @Component
-public class CadastroPecaDeRoupa{
+public class CadastroPecaDeRoupa {
 
     AbstractFactory fabricaSuperior = new FabricaPecaDeRoupaSuperior();
     AbstractFactory fabricaInferior = new FabricaPecaDeRoupaInferior();
@@ -21,13 +20,15 @@ public class CadastroPecaDeRoupa{
     @Autowired
     private IRepositorioPecaDeRoupa repositorioPecaDeRoupa;
 
-    public void addPecaDeRoupa(String nome, String tipo, MultipartFile imagem) throws IOException{
-    
+    public void addPecaDeRoupa(String nome, String tipo, MultipartFile imagem) throws IOException {
+
         PecaDeRoupa pecaDeRoupa = gerarPecadeRoupa(tipo);
         pecaDeRoupa.setNome(nome);
+
         if (imagem != null) {
-        setImagem(pecaDeRoupa, imagem);
+            setImagem(pecaDeRoupa, imagem);
         }
+
         repositorioPecaDeRoupa.addPecaDeRoupa(pecaDeRoupa);
     }
 
@@ -35,17 +36,17 @@ public class CadastroPecaDeRoupa{
         String fileName = StringUtils.cleanPath(imagem.getOriginalFilename());
         try {
             pecaDeRoupa.setNomeImagem(fileName);
-            pecaDeRoupa.setImagem(imagem.getBytes());             
+            pecaDeRoupa.setImagem(imagem.getBytes());
         } catch (IOException ex) {
             throw new IOException("Could not store file " + fileName);
         }
     }
 
-    public void deletarPecaDeRoupa(Long id){
+    public void deletarPecaDeRoupa(Long id) {
         repositorioPecaDeRoupa.deletarPecaDeRoupa(id);
     }
 
-    public List<PecaDeRoupa> consultarPecasDeRoupa(){
+    public List<PecaDeRoupa> consultarPecasDeRoupa() {
         return repositorioPecaDeRoupa.consultarPecasDeRoupa();
     }
 
@@ -54,7 +55,7 @@ public class CadastroPecaDeRoupa{
     }
 
     public PecaDeRoupa consultarPecaDeRoupaPeloId(Long id) {
-    return repositorioPecaDeRoupa.consultarPecaDeRoupaPeloID(id);
+        return repositorioPecaDeRoupa.consultarPecaDeRoupaPeloID(id);
     }
 
     private PecaDeRoupa gerarPecadeRoupa(String tipo) {
@@ -63,13 +64,13 @@ public class CadastroPecaDeRoupa{
         switch (tipo) {
             case "Superior":
                 pecaDeRoupa = fabricaSuperior.createPecaDeRoupa();
-                 break;
+                break;
             case "Inferior":
                 pecaDeRoupa = fabricaInferior.createPecaDeRoupa();
-                 break;
+                break;
             case "Calcado":
                 pecaDeRoupa = fabricaCalcado.createPecaDeRoupa();
-                 break;
+                break;
             default:
                 break;
         }
@@ -79,16 +80,16 @@ public class CadastroPecaDeRoupa{
     public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagemData) throws IOException {
         PecaDeRoupa pecaDeRoupa = consultarPecaDeRoupaPeloId(id);
         PecaDeRoupa editedPecaDeRoupa = null;
-        if( tipo != pecaDeRoupa.getTipo()){
+        if (tipo != pecaDeRoupa.getTipo()) {
             editedPecaDeRoupa = gerarPecadeRoupa(tipo);
-        }else{
+        } else {
             editedPecaDeRoupa = gerarPecadeRoupa(pecaDeRoupa.getTipo());
         }
         editedPecaDeRoupa.setNome(nome);
-        if(imagemData != null){
+        if (imagemData != null) {
             setImagem(editedPecaDeRoupa, imagemData);
         }
-        
+
         repositorioPecaDeRoupa.salvarPecaDeRoupa(editedPecaDeRoupa);
     }
 }

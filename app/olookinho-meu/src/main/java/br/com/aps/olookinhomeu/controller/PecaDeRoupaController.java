@@ -27,6 +27,7 @@ public class PecaDeRoupaController {
 	@GetMapping("")
 	public String consultarPecasDeRoupa(Model model) {
 		List<PecaDeRoupa> pecasDeRoupa = fachada.consultarPecasDeRoupa();
+
 		model.addAttribute("pecasDeRoupa", pecasDeRoupa);
 		model.addAttribute("imgUtil", new ImageUtil());
 
@@ -44,27 +45,6 @@ public class PecaDeRoupaController {
 		return "consultarPecaDeRoupaPeloId";
 	}
 
-	@GetMapping("/new")
-	public String showCadastrarPecaDeRoupa(Model model) {
-		model.addAttribute("pecaDeRoupa", new PecaDeRoupa());
-		return "TelaCadastroRoupa";
-	}
-
-	@PostMapping("/new")
-	public String cadastrarPecaDeRoupa(@RequestParam("nome") String nome, @RequestParam("tipo") String tipo,
-			@RequestParam("imagem") MultipartFile imagem, Model model) throws IOException {
-		
-			try {
-				fachada.cadastrarPecaDeRoupa(nome, tipo, imagem);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		
-		model.addAttribute("msg", "Peça de roupa cadastrada com sucesso!");
-
-		return "redirect:/pecas-de-roupa";
-	}
-
 	@GetMapping("/{id}/delete")
 	public String deletarPecaDeRoupa(@PathVariable Long id) {
 		fachada.deletarPecaDeRoupa(id);
@@ -78,12 +58,12 @@ public class PecaDeRoupaController {
 	}
 
 	@PutMapping("/{id}/edit")
-	public String editarPecaDeRoupa(@PathVariable Long id, @RequestParam("nome") String nome, @RequestParam("tipo") String tipo,
-	@RequestParam("imagem") MultipartFile imagem, Model model) throws IOException {
+	public String editarPecaDeRoupa(@PathVariable Long id, @RequestParam("nome") String nome,
+			@RequestParam("tipo") String tipo,
+			@RequestParam("imagem") MultipartFile imagem, Model model) throws IOException {
 		model.addAttribute("pecaDeRoupa", fachada.consultarPecaDeRoupaPeloId(id));
 		fachada.editarPecaDeRoupa(id, nome, tipo, imagem);
 		return "redirect:/pecas-de-roupa";
 	}
-
 
 }
