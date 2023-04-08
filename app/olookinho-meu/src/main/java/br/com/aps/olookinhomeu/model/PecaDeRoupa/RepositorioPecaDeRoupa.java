@@ -30,6 +30,11 @@ public class RepositorioPecaDeRoupa implements IRepositorioPecaDeRoupa {
 	}
 
 	@Override
+	public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo){
+		return pecaDeRoupaDAO.findByTipo(tipo);
+	}
+
+	@Override
     public PecaDeRoupa consultarPecaDeRoupaPeloID(Long id) {
         Optional<PecaDeRoupa> pecaDeRoupaOptional = pecaDeRoupaDAO.findById(id);
         PecaDeRoupa pecaDeRoupa = null;

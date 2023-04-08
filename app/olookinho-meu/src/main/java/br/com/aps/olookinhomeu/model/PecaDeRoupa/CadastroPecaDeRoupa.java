@@ -51,6 +51,10 @@ public class CadastroPecaDeRoupa{
         return repositorioPecaDeRoupa.consultarPecasDeRoupa();
     }
 
+    public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo){
+        return repositorioPecaDeRoupa.consultarPecasDeRoupaPeloTipo(tipo);
+    }
+
     public PecaDeRoupa consultarPecaDeRoupaPeloId(Long id) {
     return repositorioPecaDeRoupa.consultarPecaDeRoupaPeloID(id);
     }

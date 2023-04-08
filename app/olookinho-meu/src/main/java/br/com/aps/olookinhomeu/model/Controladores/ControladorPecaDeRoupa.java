@@ -37,4 +37,8 @@ public class ControladorPecaDeRoupa {
 		cadastroPecaDeRoupa.editarPecaDeRoupa(id, nome, tipo, imagem);
 	}
 
+	public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo){
+		return cadastroPecaDeRoupa.consultarPecasDeRoupaPeloTipo(tipo);
+	}
+
 }

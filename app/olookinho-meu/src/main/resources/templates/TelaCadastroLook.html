@@ -11,43 +11,77 @@
 
   <body>
     <div class="container">
-        <h1>Cadastrar Look</h1>
-        <form
-            class="form"
-            id="cadastrarLook"
-            action="#"
-            th:action="@{/look/new}"
-            th:object="${Look}"
-            method="POST"
-        >
-            <div>
-                <label for="nome">Nome do Look:</label>
-                <input
-                  type="text"
-                  th:value="${nome}"
-                  id="nome"
-                  name="nome"
-                  placeholder="Nome do Look"
-                  class="form-control mb-4 col-4"
-                  required
-                />
+      <h1>Cadastrar Look</h1>
+      <form
+        class="form"
+        id="cadastrarLook"
+        action="#"
+        th:action="@{/look/new}"
+        th:object="${Look}"
+        method="POST"
+      >
+        <div>
+          <label for="nome">Nome do Look:</label>
+          <input
+            type="text"
+            th:value="${nome}"
+            id="nome"
+            name="nome"
+            placeholder="Nome do Look"
+            class="form-control mb-4 col-4"
+            required
+          />
 
-                <div class="container mb-5">
-                    <div class="row">
-                      <div class="col-sm">
-                        One of three columns
-                      </div>
-                      <div class="col-sm">
-                        One of three columns
-                      </div>
-                      <div class="col-sm">
-                        One of three columns
-                      </div>
-                    </div>
-                  </div>
+          <div class="container mb-5">
+            <div class="row">
+              <div class="col-sm">
+                <table class="table" th:if="${pecasDeRoupaSup.size > 0}">
+                  <thead>
+                    <tr>
+                      <th>Nome da Peca</th>
+                      <th>Tipo da Peca</th>
+                      <th>imagem?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="peca : ${pecasDeRoupaSup}">
+                      <td th:text="${peca.nome}"></td>
+                      <td th:text="${peca.tipo}"></td>
+                      <td th:unless="${peca.imagem != null}">Sem imagem</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm">
+                <select class="form-control mb-4 col-4">
+                  <option
+                    th:each="peca : ${pecasDeRoupaSup}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                  >
+                    <img
+                      class="img-thumbnail"
+                      th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(peca.imagem)}"
+                      width="40"
+                      height="40"
+                    />
+                  </option>
+                </select>
+              </div>
+              <div class="col-sm">One of three columns</div>
             </div>
-            <button type="submit" class="btn btn-info col-2 mt-2">Cadastrar Peca</button>
-            <button class="btn btn-outline-info col-2 mt-2" onclick="history.back()"> Voltar</button>
-        </form>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info col-2 mt-2">
+          Cadastrar Peca
+        </button>
+        <button
+          class="btn btn-outline-info col-2 mt-2"
+          onclick="history.back()"
+        >
+          Voltar
+        </button>
+      </form>
     </div>
   </body>
+</html>

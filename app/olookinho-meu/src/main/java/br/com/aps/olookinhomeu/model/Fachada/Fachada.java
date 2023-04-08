@@ -45,6 +45,9 @@ public class Fachada {
 	public PecaDeRoupa consultarPecaDeRoupaPeloId(Long id) {
     	return controladorPecaDeRoupa.consultarPecaDeRoupaPeloId(id);
     }
+	public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo){
+		return controladorPecaDeRoupa.consultarPecasDeRoupaPeloTipo(tipo);
+	}
 
 	 public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagemData)  throws IOException{
 	 	controladorPecaDeRoupa.editarPecaDeRoupa(id, nome, tipo, imagemData);

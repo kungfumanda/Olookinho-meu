@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.aps.olookinhomeu.model.Fachada.Fachada;
 import br.com.aps.olookinhomeu.model.Look.Look;
 import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
+import br.com.aps.olookinhomeu.model.util.ImageUtil;
 
 @RequestMapping("/looks")
 @Controller
@@ -27,9 +28,10 @@ public class LookController {
 
     @GetMapping("/new")
     public String showCadastrarLook(Model model){
-        List<PecaDeRoupa> pecaDeRoupas = fachada.consultarPecasDeRoupa();
+        List<PecaDeRoupa> pecasDeRoupaSup = fachada.consultarPecasDeRoupaPeloTipo("Superior");
         model.addAttribute("look", new Look());
-        model.addAttribute("pecasDeRoupa", pecaDeRoupas);
+        model.addAttribute("pecasDeRoupaSup", pecasDeRoupaSup);
+        model.addAttribute("imgUtil", new ImageUtil());
         return "TelaCadastroLook";
     }
 }

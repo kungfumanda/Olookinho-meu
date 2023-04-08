@@ -9,5 +9,5 @@ public interface IRepositorioPecaDeRoupa {
     List<PecaDeRoupa> consultarPecasDeRoupa();
     PecaDeRoupa consultarPecaDeRoupaPeloID(Long id);
     void salvarPecaDeRoupa(PecaDeRoupa pecaDeRoupa);
-    
+    List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo);
 }
