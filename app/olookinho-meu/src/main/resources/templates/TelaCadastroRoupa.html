@@ -22,7 +22,7 @@
         enctype="multipart/form-data"
       >
         <div>
-          <label for="nome">nome:</label>
+          <label for="nome">Nome da Peça:</label>
           <input
             type="text"
             th:value="${nome}"
@@ -34,9 +34,10 @@
           />
         </div>
         <div>
-          <label for="tipo_peca_de_roupa">tipo_peca_de_roupa:</label>
+          <label for="tipo">Tipo da Peça:</label>
           <select
             id="tipo_peca_de_roupa"
+            class="form-control mb-4 col-4"
             th:value="${tipo}"
             form="cadastrarPecaDeRoupa"
             name="tipo"
@@ -47,10 +48,11 @@
           </select>
         </div>
         <div>
-          <label for="imagem">imagem:</label>
+          <label for="imagem">Imagem de Referencia:</label>
           <input
             type="file"
             id="imagem"
+            class="form-control mb-4 col-4"
             th:value="${imagem}"
             accept="image/*"
             name="imagem"
@@ -58,9 +60,10 @@
           />
         </div>
 
-        <div id="imagePreview"></div>
+        <div  id="imagePreview"></div>
 
-        <button type="submit" class="btn btn-info col-2">Cadastrar Peca</button>
+        <button type="submit" class="btn btn-info col-2 mt-2">Cadastrar Peca</button>
+        <button class="btn btn-outline-info col-2 mt-2" onclick="history.back()"> Voltar</button>
       </form>
 
       <script type="text/javascript">

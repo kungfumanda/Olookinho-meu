@@ -76,10 +76,25 @@ public class CadastroPecaDeRoupa{
 
     public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagemData) throws IOException {
         PecaDeRoupa pecaDeRoupa = consultarPecaDeRoupaPeloId(id);
-        pecaDeRoupa.setNome(nome);
-        pecaDeRoupa.setTipo(tipo);
-        setImagem(pecaDeRoupa, imagemData);
+        PecaDeRoupa editedPecaDeRoupa = null;
+        if( tipo != pecaDeRoupa.getTipo()){
+            editedPecaDeRoupa = gerarPecadeRoupa(tipo);
+        }else{
+            editedPecaDeRoupa = gerarPecadeRoupa(pecaDeRoupa.getTipo());
+        }
+        editedPecaDeRoupa.setNome(nome);
+        if(imagemData != null){
+            setImagem(editedPecaDeRoupa, imagemData);
+        }
         
-        repositorioPecaDeRoupa.salvarPecaDeRoupa(pecaDeRoupa);
+        repositorioPecaDeRoupa.salvarPecaDeRoupa(editedPecaDeRoupa);
+
+            
+        // PecaDeRoupa pecaDeRoupa = gerarPecadeRoupa(tipo);
+        // pecaDeRoupa.setNome(nome);
+        // if (imagem != null) {
+        // setImagem(pecaDeRoupa, imagem);
+        // }
+        // repositorioPecaDeRoupa.addPecaDeRoupa(pecaDeRoupa);
     }
 }
