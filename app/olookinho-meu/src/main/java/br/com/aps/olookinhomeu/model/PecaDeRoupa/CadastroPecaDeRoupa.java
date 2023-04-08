@@ -13,9 +13,9 @@ import br.com.aps.olookinhomeu.model.PecaDeRoupa.Factories.*;
 @Component
 public class CadastroPecaDeRoupa {
 
-    AbstractFactory fabricaSuperior = new FabricaPecaDeRoupaSuperior();
-    AbstractFactory fabricaInferior = new FabricaPecaDeRoupaInferior();
-    AbstractFactory fabricaCalcado = new FabricaCalcado();
+    Factory fabricaSuperior = new FabricaPecaDeRoupaSuperior();
+    Factory fabricaInferior = new FabricaPecaDeRoupaInferior();
+    Factory fabricaCalcado = new FabricaCalcado();
 
     @Autowired
     private IRepositorioPecaDeRoupa repositorioPecaDeRoupa;
