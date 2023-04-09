@@ -11,37 +11,67 @@
 
   <body>
     <div>
+      <div th:if="${param.errorMsg}">
+        <p
+          th:text="${param.errorMsg}"
+          class="alert alert-danger"
+          role="alert"
+        ></p>
+      </div>
+
+      <div
+        th:if="${param.sucMsg}"
+        th:text="${param.sucMsg}"
+        class="alert alert-success"
+        role="alert"
+      ></div>
+
       <div>
         <h1>Lista de Pecas</h1>
       </div>
-    <div>
-        <a th:href="@{/pecas-de-roupa/new}" class="btn btn-primary btn-sm mb-3"> Add Peca de Roupa </a>
+      <div>
+        <a th:href="@{/pecas-de-roupa/new}" class="btn btn-primary btn-sm mb-3">
+          Add Peca de Roupa
+        </a>
         <a th:href="@{/}" class="btn btn-secondary btn-sm mb-3"> Voltar </a>
         <table class="table" th:if="${pecasDeRoupa.size > 0}">
-            <thead>
+          <thead>
             <tr>
-                <th>Nome da Peca</th>
-                <th>Tipo da Peca</th>
-                <th>imagem</th>
+              <th>Nome da Peca</th>
+              <th>Tipo da Peca</th>
+              <th>imagem</th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr th:each="peca : ${pecasDeRoupa}">
-                <td th:text="${peca.nome}"></td>
-                <td th:text="${peca.tipo}"></td>
-                <td th:if="${peca.imagem != null}">
-                    <img class='img-thumbnail' th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(peca.imagem)}" width="40" height="40" />
-                </td>
-                <td th:unless="${peca.imagem != null}">Sem imagem</td>
-                <td><a th:href="@{/pecas-de-roupa/{id}/edit(id=${peca.id})}">Editar</a></td>
-                <td><a th:href="@{/pecas-de-roupa/{id}/delete(id=${peca.id})}">Deletar</a></td>
+              <td th:text="${peca.nome}"></td>
+              <td th:text="${peca.tipo}"></td>
+              <td th:if="${peca.imagem != null}">
+                <img
+                  class="img-thumbnail"
+                  th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(peca.imagem)}"
+                  width="40"
+                  height="40"
+                />
+              </td>
+              <td th:unless="${peca.imagem != null}">Sem imagem</td>
+              <td>
+                <a th:href="@{/pecas-de-roupa/{id}/edit(id=${peca.id})}"
+                  >Editar</a
+                >
+              </td>
+              <td>
+                <a th:href="@{/pecas-de-roupa/{id}/delete(id=${peca.id})}"
+                  >Deletar</a
+                >
+              </td>
             </tr>
-            
-            </tbody>
+          </tbody>
         </table>
-    </div>
-    <p style="color: red;" th:if="${pecasDeRoupa.size == 0}">Não temos pecas de roupas.</p>
-
+      </div>
+      <p style="color: red" th:if="${pecasDeRoupa.size == 0}">
+        Não temos pecas de roupas.
+      </p>
     </div>
   </body>
 </html>

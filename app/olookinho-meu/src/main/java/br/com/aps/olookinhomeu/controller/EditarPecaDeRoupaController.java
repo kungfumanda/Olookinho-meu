@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +38,6 @@ public class EditarPecaDeRoupaController {
             return "redirect:/pecas-de-roupa";
         }
     }
-
-    //
 
     @PostMapping("/{id}/edit")
     public String editarPecaDeRoupa(@PathVariable Long id, @RequestParam("nome") String nome,

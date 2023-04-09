@@ -33,10 +33,10 @@ public class RepositorioLook implements IRepositorioLook {
 
         for (PecaDeRoupa pecaDeRoupa : previousPecasDeRoupa) {
             if (!pecasDeRoupa.contains(pecaDeRoupa)) {
-                // remover look da peca de roupa
+
                 pecaDeRoupa.getLooks().remove(look);
                 pecaDeRoupaDAO.save(pecaDeRoupa);
-                // remover peca de roupa do look
+
                 remover.add(pecaDeRoupa);
             }
         }

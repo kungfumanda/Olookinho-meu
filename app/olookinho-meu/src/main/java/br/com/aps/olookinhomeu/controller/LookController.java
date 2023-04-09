@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.aps.olookinhomeu.model.Fachada.Fachada;
 import br.com.aps.olookinhomeu.model.Look.Look;
@@ -49,7 +50,8 @@ public class LookController {
 
     @PostMapping("/new")
     public String cadastrarLook(@RequestParam("nome") String nome, @RequestParam("pecaSup") Long sup_id,
-            @RequestParam("pecaInf") Long inf_id, @RequestParam("pecaCalc") Long calc_id, Model model) {
+            @RequestParam("pecaInf") Long inf_id, @RequestParam("pecaCalc") Long calc_id, Model model,
+            RedirectAttributes redirectAttributes) {
         Set<PecaDeRoupa> selectedPecasDeRoupa = new HashSet<>();
         Long[] PecaDeRoupaIds = { sup_id, inf_id, calc_id };
         for (Long id : PecaDeRoupaIds) {
@@ -58,13 +60,15 @@ public class LookController {
         }
         fachada.criarLook(nome, selectedPecasDeRoupa);
 
+        redirectAttributes.addAttribute("sucMsg", "Look cadastrada com sucesso.");
         return "redirect:/looks";
     }
 
     @PostMapping("/{id}/edit")
     public String editarLook(@PathVariable Long id, @RequestParam("nome") String nome,
             @RequestParam("pecaSup") Long sup_id,
-            @RequestParam("pecaInf") Long inf_id, @RequestParam("pecaCalc") Long calc_id, Model model) {
+            @RequestParam("pecaInf") Long inf_id, @RequestParam("pecaCalc") Long calc_id, Model model,
+            RedirectAttributes redirectAttributes) {
 
         Set<PecaDeRoupa> selectedPecasDeRoupa = new HashSet<>();
 
@@ -77,6 +81,7 @@ public class LookController {
 
         fachada.editarLook(fachada.consultarLookPeloId(id), selectedPecasDeRoupa);
 
+        redirectAttributes.addAttribute("sucMsg", "Look salvo com sucesso.");
         return "redirect:/looks";
     }
 

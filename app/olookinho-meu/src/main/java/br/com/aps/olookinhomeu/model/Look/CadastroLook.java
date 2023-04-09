@@ -18,9 +18,7 @@ public class CadastroLook {
 
         Look look = new Look();
 
-        if (pecasDeRoupa.isEmpty()) { // checar se tem como tratar isso direto no front // tem, mas acho melhor ter
-                                      // outro check // se for pra ter outro check, talvez seja uma excecao, mas dps a
-                                      // gt checa
+        if (pecasDeRoupa.isEmpty()) {
             throw new RuntimeException("Nao ha pecas de roupa para criar um look");
         } else {
             look.setPecasDeRoupa(pecasDeRoupa);

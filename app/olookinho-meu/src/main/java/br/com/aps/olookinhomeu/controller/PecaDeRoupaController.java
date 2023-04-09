@@ -5,13 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
 import java.util.List;
 import br.com.aps.olookinhomeu.model.Fachada.Fachada;
 import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
@@ -34,20 +30,18 @@ public class PecaDeRoupaController {
 		return "TelaListarPecaRoupa";
 	}
 
-	@GetMapping("/{id}")
-	public String consultarPecaDeRoupaPeloId(@RequestParam("id") Long id, Model model) {
-		PecaDeRoupa peca = fachada.consultarPecaDeRoupaPeloId(id);
-		if (peca != null) {
-			model.addAttribute("peca", peca);
-		} else {
-			model.addAttribute("msg", "Peça de roupa não encontrada!");
-		}
-		return "consultarPecaDeRoupaPeloId";
-	}
-
 	@GetMapping("/{id}/delete")
-	public String deletarPecaDeRoupa(@PathVariable Long id) {
-		fachada.deletarPecaDeRoupa(id);
+	public String deletarPecaDeRoupa(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+		try {
+			fachada.deletarPecaDeRoupa(id);
+		} catch (Exception e) {
+			if (fachada.consultarPecaDeRoupaPeloId(id) != null) {
+				redirectAttributes.addAttribute("errorMsg",
+						"Por favor, edite os looks associados a esta peça antes de deletá-la.");
+				return "redirect:/pecas-de-roupa";
+			}
+		}
+		redirectAttributes.addAttribute("sucMsg", "Peça deletada com sucesso.");
 		return "redirect:/pecas-de-roupa";
 	}
 

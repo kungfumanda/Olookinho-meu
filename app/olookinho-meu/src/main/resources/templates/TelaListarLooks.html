@@ -11,10 +11,19 @@
 
   <body>
     <div>
+      <div
+        th:if="${param.sucMsg}"
+        th:text="${param.sucMsg}"
+        class="alert alert-success"
+        role="alert"
+      ></div>
+
       <div>
         <h1>Lista de Looks</h1>
       </div>
-      <a th:href="@{/looks/new}" class="btn btn-primary btn-sm mb-3"> Add Look </a>
+      <a th:href="@{/looks/new}" class="btn btn-primary btn-sm mb-3">
+        Add Look
+      </a>
       <a th:href="@{/}" class="btn btn-secondary btn-sm mb-3"> Voltar </a>
       <table class="table" th:if="${looks.size > 0}">
         <thead>
@@ -27,11 +36,13 @@
             <td th:text="${look.nome}"></td>
             <td><a th:href="@{/looks/{id}/view(id=${look.id})}">View</a></td>
             <td><a th:href="@{/looks/{id}/edit(id=${look.id})}">Editar</a></td>
-            <td><a th:href="@{/looks/{id}/delete(id=${look.id})}">Deletar</a></td>
+            <td>
+              <a th:href="@{/looks/{id}/delete(id=${look.id})}">Deletar</a>
+            </td>
           </tr>
         </tbody>
       </table>
-      <p style="color: red;" th:if="${looks.size == 0}">Não temos looks.</p>
+      <p style="color: red" th:if="${looks.size == 0}">Não temos looks.</p>
     </div>
   </body>
 </html>
