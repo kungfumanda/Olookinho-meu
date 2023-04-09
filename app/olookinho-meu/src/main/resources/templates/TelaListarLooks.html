@@ -19,14 +19,13 @@
         <thead>
           <tr>
             <th>Nome do Look</th>
-            <th>Peca de Roupa Superior</th>
-            <th>Peca de Roupa Inferior</th>
-            <th>Calcado</th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="look : ${looks}">
             <td th:text="${look.nome}"></td>
+            <td><a th:href="@{/looks/{id}/view(id=${look.id})}">View</a></td>
+            <td><a th:href="@{/looks/{id}/delete(id=${look.id})}">Deletar</a></td>
           </tr>
         </tbody>
       </table>

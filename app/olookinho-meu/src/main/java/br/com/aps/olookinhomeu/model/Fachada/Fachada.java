@@ -2,6 +2,7 @@ package br.com.aps.olookinhomeu.model.Fachada;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -57,7 +58,20 @@ public class Fachada {
 		return controladorLook.consultarLooks();
 	}
 
+    public Look consultarLookPeloId(Long id) {
+        return controladorLook.consultarLookPeloId(id);
+    }
 
+	public void criarLook(String nome, Set<PecaDeRoupa> pecasDeRoupa){
+		controladorLook.addLook(nome, pecasDeRoupa);
+	}
 
+	public void deletarLook(Long id){
+		controladorLook.deletarLook(id);
+	}
+
+	public Set<PecaDeRoupa> getPecasDeRoupaByLook(Long id){
+		return controladorLook.getPecasDeRoupaByLook(id);
+	}
 
 }

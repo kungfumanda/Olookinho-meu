@@ -29,4 +29,8 @@ public class ControladorLook {
     public Look consultarLookPeloId(Long id) {
         return cadastroLook.consultarLookPeloId(id);
     }
+
+    public Set<PecaDeRoupa> getPecasDeRoupaByLook(Long id){
+        return cadastroLook.getPecasDeRoupaByLook(id);
+    }
 }

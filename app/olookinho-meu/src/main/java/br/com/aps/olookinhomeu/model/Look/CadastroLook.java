@@ -31,37 +31,6 @@ public class CadastroLook {
             repositorioLook.addLook(look);
         }
 
-
-    // public void editarLook(Long id, String nome, List<PecaDeRoupa> pecasDeRoupa) {
-    //     Look selectedLook = repositorioLook.consultarLookPeloId(id);
-    //     if (selectedLook == null) {
-    //         throw new RuntimeException("Nao ha look com esse ID");
-    //     } else {
-    //         if(!pecasDeRoupa.isEmpty()){
-    //             for (PecaDeRoupa peca : pecasDeRoupa) {
-    //                 String tipo = peca.getTipo();
-    
-    //                 switch (tipo) {
-    //                     case "Calcado":
-    //                         selectedLook.setCalcado(peca);
-    //                         break;
-    //                     case "Superior":
-    //                         selectedLook.setPecaDeRoupaSuperior(peca);
-    //                         break;
-    //                     case "Inferior":
-    //                         selectedLook.setPecaDeRoupaInferior(peca);
-    //                         break;
-    //                     default:
-    //                         break; // talvez excecao
-    //                 }
-    //             }
-    //         }
-    //         selectedLook.setNome(nome);
-            
-    //         repositorioLook.editarLook(selectedLook);
-    //     }
-    // }
-
     public void deletarLook(Long id) {
         repositorioLook.deletarLook(id);
     }
@@ -72,6 +41,10 @@ public class CadastroLook {
 
     public Look consultarLookPeloId(Long id) {
         return repositorioLook.consultarLookPeloId(id);
+    }
+
+    public Set<PecaDeRoupa> getPecasDeRoupaByLook(Long id){
+       return repositorioLook.getPecasDeRoupaByLook(id);
     }
 
 }

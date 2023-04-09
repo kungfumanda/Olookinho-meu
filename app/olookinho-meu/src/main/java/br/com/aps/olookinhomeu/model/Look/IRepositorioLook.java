@@ -2,6 +2,7 @@ package br.com.aps.olookinhomeu.model.Look;
 import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface IRepositorioLook {
@@ -17,4 +18,6 @@ public interface IRepositorioLook {
     Look addPecaDeRoupa(Long id, PecaDeRoupa pecaDeRoupa);
 
     void deletarLook(Long id);
+
+    Set<PecaDeRoupa> getPecasDeRoupaByLook(Long id);
 }

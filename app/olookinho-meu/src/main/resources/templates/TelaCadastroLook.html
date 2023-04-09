@@ -16,7 +16,7 @@
         class="form"
         id="cadastrarLook"
         action="#"
-        th:action="@{/look/new}"
+        th:action="@{/looks/new}"
         th:object="${Look}"
         method="POST"
       >
@@ -32,48 +32,50 @@
             required
           />
 
-          <div class="container mb-5">
-            <div class="row">
-              <div class="col-sm">
-                <table class="table" th:if="${pecasDeRoupaSup.size > 0}">
-                  <thead>
-                    <tr>
-                      <th>Nome da Peca</th>
-                      <th>Tipo da Peca</th>
-                      <th>imagem?</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr th:each="peca : ${pecasDeRoupaSup}">
-                      <td th:text="${peca.nome}"></td>
-                      <td th:text="${peca.tipo}"></td>
-                      <td th:unless="${peca.imagem != null}">Sem imagem</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="col-sm">
-                <select class="form-control mb-4 col-4">
+          <div class="mb-5">
+            <div class="d-flex flex-row justify-content-between">
+              <div>
+                <label>Selecione a Peca de Roupa Superior</label>
+                <select class="form-control " th:value="${sup_id}" form="cadastrarLook" name="pecaSup">
+                  <option disabled selected>Selecione uma Peca</option>
                   <option
                     th:each="peca : ${pecasDeRoupaSup}"
                     th:value="${peca.id}"
                     th:text="${peca.nome}"
                   >
-                    <img
-                      class="img-thumbnail"
-                      th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(peca.imagem)}"
-                      width="40"
-                      height="40"
-                    />
                   </option>
                 </select>
               </div>
-              <div class="col-sm">One of three columns</div>
+              <div>
+                <label>Selecione a Peca de Roupa Inferior</label>
+                <select class="form-control" th:value="${inf_id}" form="cadastrarLook" name="pecaInf">
+                  <option disabled selected>Selecione uma Peca</option>
+                  <option
+                    th:each="peca : ${pecasDeRoupaInf}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                  >
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label>Selecione o Calcado</label>
+                <select class="form-control" th:value="${calc_id}" form="cadastrarLook" name="pecaCalc">
+                  <option disabled selected>Selecione um Calcado</option>
+                  <option
+                    th:each="peca : ${pecasDeRoupaCalc}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                  >
+                  </option>
+                </select>
+
+              </div>
             </div>
           </div>
         </div>
         <button type="submit" class="btn btn-info col-2 mt-2">
-          Cadastrar Peca
+          Cadastrar Look
         </button>
         <button
           class="btn btn-outline-info col-2 mt-2"

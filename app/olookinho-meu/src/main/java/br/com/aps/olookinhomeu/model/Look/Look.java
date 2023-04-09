@@ -23,6 +23,11 @@ public class Look {
             @JoinColumn(name = "PecaDeRoupaId") })
     private Set<PecaDeRoupa> pecasDeRoupa = new HashSet<>();
 
+    public void removerPecasDeRoupa(PecaDeRoupa pecaDeRoupa){
+        pecasDeRoupa.remove(pecaDeRoupa);
+        pecaDeRoupa.getLooks().remove(this);
+    }
+
     public Long getId() {
         return id;
     }
@@ -46,6 +51,8 @@ public class Look {
     public void setPecasDeRoupa(Set<PecaDeRoupa> pecasDeRoupa) {
         this.pecasDeRoupa = pecasDeRoupa;
     }
+    
+
 
     public LookMemento salvarMemento() {
         return new LookMemento(this.nome, this.pecasDeRoupa);
