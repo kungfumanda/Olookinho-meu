@@ -13,13 +13,13 @@ import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
 
 @Component
 public class ControladorPecaDeRoupa {
-	
+
 	@Autowired
 	private CadastroPecaDeRoupa cadastroPecaDeRoupa;
-	
+
 	public void deletarPecaDeRoupa(Long id) {
-        cadastroPecaDeRoupa.deletarPecaDeRoupa(id);
-    }
+		cadastroPecaDeRoupa.deletarPecaDeRoupa(id);
+	}
 
 	public void cadastrarPecaDeRoupa(String nome, String tipo, MultipartFile imagem) throws IOException {
 		cadastroPecaDeRoupa.addPecaDeRoupa(nome, tipo, imagem);
@@ -30,15 +30,15 @@ public class ControladorPecaDeRoupa {
 	}
 
 	public PecaDeRoupa consultarPecaDeRoupaPeloId(Long id) {
-    	return cadastroPecaDeRoupa.consultarPecaDeRoupaPeloId(id);
-    }
-
-	public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagem) throws IOException {
-		cadastroPecaDeRoupa.editarPecaDeRoupa(id, nome, tipo, imagem);
+		return cadastroPecaDeRoupa.consultarPecaDeRoupaPeloId(id);
 	}
 
-	public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo){
+	public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo) {
 		return cadastroPecaDeRoupa.consultarPecasDeRoupaPeloTipo(tipo);
+	}
+
+	public void editarPecaDeRoupa(PecaDeRoupa pecaDeRoupa) throws Exception {
+		cadastroPecaDeRoupa.editarPecaDeRoupa(pecaDeRoupa);
 	}
 
 }

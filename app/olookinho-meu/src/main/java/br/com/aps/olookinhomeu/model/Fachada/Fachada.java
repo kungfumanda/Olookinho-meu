@@ -15,49 +15,48 @@ import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupa;
 
 @Component
 public class Fachada {
-	
+
 	@Autowired
 	private ControladorLogin controladorLogin;
 
 	@Autowired
 	private ControladorPecaDeRoupa controladorPecaDeRoupa;
-	
+
 	@Autowired
 	private ControladorLook controladorLook;
-	
+
 	public Boolean loginUsuario() {
-        return controladorLogin.requisitarLogin();
-    }	
+		return controladorLogin.requisitarLogin();
+	}
 
 	public void cadastrarPecaDeRoupa(String nome, String tipo, MultipartFile imagemData) throws IOException {
-				
+
 		controladorPecaDeRoupa.cadastrarPecaDeRoupa(nome, tipo, imagemData);
 	}
 
 	public void deletarPecaDeRoupa(Long id) {
-        controladorPecaDeRoupa.deletarPecaDeRoupa(id);
-    }
+		controladorPecaDeRoupa.deletarPecaDeRoupa(id);
+	}
 
 	public List<PecaDeRoupa> consultarPecasDeRoupa() {
 		return controladorPecaDeRoupa.consultarPecasDeRoupa();
 	}
 
 	public PecaDeRoupa consultarPecaDeRoupaPeloId(Long id) {
-    	return controladorPecaDeRoupa.consultarPecaDeRoupaPeloId(id);
-    }
-	public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo){
+		return controladorPecaDeRoupa.consultarPecaDeRoupaPeloId(id);
+	}
+
+	public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo) {
 		return controladorPecaDeRoupa.consultarPecasDeRoupaPeloTipo(tipo);
 	}
 
-	 public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagemData)  throws IOException{
-	 	controladorPecaDeRoupa.editarPecaDeRoupa(id, nome, tipo, imagemData);
-	}
-
-	public List<Look> consultarLooks(){
+	public List<Look> consultarLooks() {
 		return controladorLook.consultarLooks();
 	}
 
+	public void editarPecaDeRoupa(PecaDeRoupa pecaDeRoupa) throws Exception {
+		controladorPecaDeRoupa.editarPecaDeRoupa(pecaDeRoupa);
 
-
+	}
 
 }

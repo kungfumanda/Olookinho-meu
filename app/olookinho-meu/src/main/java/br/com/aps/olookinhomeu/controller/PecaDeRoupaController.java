@@ -51,19 +51,4 @@ public class PecaDeRoupaController {
 		return "redirect:/pecas-de-roupa";
 	}
 
-	@GetMapping("/{id}/edit")
-	public String editarPecaDeRoupa(@PathVariable Long id, Model model) {
-		model.addAttribute("pecaDeRoupa", fachada.consultarPecaDeRoupaPeloId(id));
-		return "TelaEditarRoupa";
-	}
-
-	@PutMapping("/{id}/edit")
-	public String editarPecaDeRoupa(@PathVariable Long id, @RequestParam("nome") String nome,
-			@RequestParam("tipo") String tipo,
-			@RequestParam("imagem") MultipartFile imagem, Model model) throws IOException {
-		model.addAttribute("pecaDeRoupa", fachada.consultarPecaDeRoupaPeloId(id));
-		fachada.editarPecaDeRoupa(id, nome, tipo, imagem);
-		return "redirect:/pecas-de-roupa";
-	}
-
 }
