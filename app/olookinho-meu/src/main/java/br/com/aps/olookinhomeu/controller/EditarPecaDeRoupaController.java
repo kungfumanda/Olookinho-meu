@@ -40,6 +40,8 @@ public class EditarPecaDeRoupaController {
         }
     }
 
+    //
+
     @PostMapping("/{id}/edit")
     public String editarPecaDeRoupa(@PathVariable Long id, @RequestParam("nome") String nome,
             @RequestParam("imagem") MultipartFile imagem, Model model) throws IOException {
@@ -50,7 +52,6 @@ public class EditarPecaDeRoupaController {
             pecaDeRoupa.setNome(nome);
 
             if (imagem != null) {
-                System.out.println("aaaaaaaaaaaa" + imagem.getContentType());
                 ImageUtil imageUtil = new ImageUtil();
                 imageUtil.setImagem(pecaDeRoupa, imagem);
             }

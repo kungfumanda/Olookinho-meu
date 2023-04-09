@@ -7,6 +7,7 @@ import br.com.aps.olookinhomeu.model.PecaDeRoupa.PecaDeRoupaDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -26,8 +27,27 @@ public class RepositorioLook implements IRepositorioLook {
     }
 
     @Override
-    public void editarLook(Look look) { // lembrar de ver bd
-        this.lookDAO.save(look);
+    public void editarLook(Look look, Set<PecaDeRoupa> pecasDeRoupa) {
+        Set<PecaDeRoupa> previousPecasDeRoupa = look.getPecasDeRoupa();
+        Set<PecaDeRoupa> remover = new HashSet<PecaDeRoupa>();
+
+        for (PecaDeRoupa pecaDeRoupa : previousPecasDeRoupa) {
+            if (!pecasDeRoupa.contains(pecaDeRoupa)) {
+                // remover look da peca de roupa
+                pecaDeRoupa.getLooks().remove(look);
+                pecaDeRoupaDAO.save(pecaDeRoupa);
+                // remover peca de roupa do look
+                remover.add(pecaDeRoupa);
+            }
+        }
+        for (PecaDeRoupa pecaDeRoupa : remover) {
+            look.removerPecasDeRoupa(pecaDeRoupa);
+        }
+        for (PecaDeRoupa pecaDeRoupa : pecasDeRoupa) {
+            look.getPecasDeRoupa().add(pecaDeRoupa);
+        }
+
+        lookDAO.save(look);
     }
 
     @Override
@@ -69,13 +89,13 @@ public class RepositorioLook implements IRepositorioLook {
         Look look;
         if (lookOptional.isPresent()) {
             look = lookOptional.get();
-           Set<PecaDeRoupa> pecaDeRoupas = look.getPecasDeRoupa();
+            Set<PecaDeRoupa> pecaDeRoupas = look.getPecasDeRoupa();
 
-           for(PecaDeRoupa pecaDeRoupa : pecaDeRoupas){
-            pecaDeRoupa.getLooks().remove(look);
-            pecaDeRoupaDAO.save(pecaDeRoupa);
-           }
-           lookDAO.delete(look);
+            for (PecaDeRoupa pecaDeRoupa : pecaDeRoupas) {
+                pecaDeRoupa.getLooks().remove(look);
+                pecaDeRoupaDAO.save(pecaDeRoupa);
+            }
+            lookDAO.delete(look);
         }
     }
 

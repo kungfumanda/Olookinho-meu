@@ -23,13 +23,17 @@ public class CadastroLook {
                                       // gt checa
             throw new RuntimeException("Nao ha pecas de roupa para criar um look");
         } else {
-                look.setPecasDeRoupa(pecasDeRoupa);
+            look.setPecasDeRoupa(pecasDeRoupa);
 
-            }
-            look.setNome(nome);
-
-            repositorioLook.addLook(look);
         }
+        look.setNome(nome);
+
+        repositorioLook.addLook(look);
+    }
+
+    public void editarLook(Look look, Set<PecaDeRoupa> selectedPecasDeRoupa) {
+        repositorioLook.editarLook(look, selectedPecasDeRoupa);
+    }
 
     public void deletarLook(Long id) {
         repositorioLook.deletarLook(id);
@@ -43,8 +47,8 @@ public class CadastroLook {
         return repositorioLook.consultarLookPeloId(id);
     }
 
-    public Set<PecaDeRoupa> getPecasDeRoupaByLook(Long id){
-       return repositorioLook.getPecasDeRoupaByLook(id);
+    public Set<PecaDeRoupa> getPecasDeRoupaByLook(Long id) {
+        return repositorioLook.getPecasDeRoupaByLook(id);
     }
 
 }

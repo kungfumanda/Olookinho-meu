@@ -76,4 +76,8 @@ public class Fachada {
 
 	}
 
+	public void editarLook(Look look, Set<PecaDeRoupa> selectedPecasDeRoupa) {
+		controladorLook.editarLook(look, selectedPecasDeRoupa);
+	}
+
 }

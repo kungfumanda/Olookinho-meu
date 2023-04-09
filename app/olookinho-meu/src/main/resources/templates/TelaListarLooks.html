@@ -26,6 +26,7 @@
           <tr th:each="look : ${looks}">
             <td th:text="${look.nome}"></td>
             <td><a th:href="@{/looks/{id}/view(id=${look.id})}">View</a></td>
+            <td><a th:href="@{/looks/{id}/edit(id=${look.id})}">Editar</a></td>
             <td><a th:href="@{/looks/{id}/delete(id=${look.id})}">Deletar</a></td>
           </tr>
         </tbody>

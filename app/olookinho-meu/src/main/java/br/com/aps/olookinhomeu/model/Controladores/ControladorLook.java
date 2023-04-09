@@ -15,9 +15,10 @@ public class ControladorLook {
     @Autowired
     private CadastroLook cadastroLook;
 
-    public void addLook(String nome, Set<PecaDeRoupa> pecasDeRoupa){
+    public void addLook(String nome, Set<PecaDeRoupa> pecasDeRoupa) {
         cadastroLook.addLook(nome, pecasDeRoupa);
     }
+
     public void deletarLook(Long id) {
         cadastroLook.deletarLook(id);
     }
@@ -30,7 +31,11 @@ public class ControladorLook {
         return cadastroLook.consultarLookPeloId(id);
     }
 
-    public Set<PecaDeRoupa> getPecasDeRoupaByLook(Long id){
+    public Set<PecaDeRoupa> getPecasDeRoupaByLook(Long id) {
         return cadastroLook.getPecasDeRoupaByLook(id);
+    }
+
+    public void editarLook(Look look, Set<PecaDeRoupa> selectedPecasDeRoupa) {
+        cadastroLook.editarLook(look, selectedPecasDeRoupa);
     }
 }

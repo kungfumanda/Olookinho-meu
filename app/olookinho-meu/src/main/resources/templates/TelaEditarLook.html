@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Editar Look</h1>
+      <form
+        class="form"
+        id="editarLook"
+        action="#"
+        th:action="@{/looks/{id}/edit(id=${look.id})}"
+        th:object="${look}"
+        method="POST"
+      >
+        
+        <div>
+          <label for="nome">Nome do Look:</label>
+          <input
+            type="text"
+            th:value="${nome}"
+            th:field="*{nome}"
+            id="nome"
+            name="nome"
+            placeholder="Nome do Look"
+            class="form-control mb-4 col-4"
+            required
+          />
+
+          <div class="mb-5">
+            <div class="d-flex flex-row justify-content-between">
+              <div>
+                <label>Peca de Roupa Superior</label>
+                <select class="form-control" th:value="${sup.id}" form="editarLook" name="pecaSup">
+                  <option disabled>Selecione uma Peca</option>
+                  <option
+                    th:each="peca : ${pecasDeRoupaSup}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                    th:selected="${peca.id == sup.id}"
+                  >
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label>Peca de Roupa Inferior</label>
+                <select class="form-control" th:value="${inf.id}" form="editarLook" name="pecaInf">
+                  <option disabled>Selecione uma Peca</option>
+                  <option
+                    th:each="peca : ${pecasDeRoupaInf}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                    th:selected="${peca.id == inf.id}"
+                  >
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label>Calcado</label>
+                <select class="form-control" th:value="${calc.id}" form="editarLook" name="pecaCalc">
+                  <option disabled>Selecione um Calcado</option>
+                  <option
+                    th:each="peca : ${pecasDeRoupaCalc}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                    th:selected="${peca.id == calc.id}"
+                  >
+                  </option>
+                </select>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info col-2 mt-2">
+          Salvar Look
+        </button>
+        <a th:href="@{/looks}" class="btn btn-outline-info col-2 mt-2">Voltar</a>
+      </form>
+    </div>
+  </body>
+</html>

@@ -61,19 +61,67 @@ public class LookController {
         return "redirect:/looks";
     }
 
+    @PostMapping("/{id}/edit")
+    public String editarLook(@PathVariable Long id, @RequestParam("nome") String nome,
+            @RequestParam("pecaSup") Long sup_id,
+            @RequestParam("pecaInf") Long inf_id, @RequestParam("pecaCalc") Long calc_id, Model model) {
+
+        Set<PecaDeRoupa> selectedPecasDeRoupa = new HashSet<>();
+
+        Long[] PecaDeRoupaIds = { sup_id, inf_id, calc_id };
+        for (Long i : PecaDeRoupaIds) {
+
+            selectedPecasDeRoupa.add(fachada.consultarPecaDeRoupaPeloId(i));
+
+        }
+
+        fachada.editarLook(fachada.consultarLookPeloId(id), selectedPecasDeRoupa);
+
+        return "redirect:/looks";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editarPecaDeRoupa(@PathVariable Long id, Model model) {
+        Look look = fachada.consultarLookPeloId(id);
+        Set<PecaDeRoupa> pecasDeRoupa = look.getPecasDeRoupa();
+        model.addAttribute("look", look);
+
+        model.addAttribute("pecasDeRoupaSup", fachada.consultarPecasDeRoupaPeloTipo("Superior"));
+        model.addAttribute("pecasDeRoupaInf", fachada.consultarPecasDeRoupaPeloTipo("Inferior"));
+        model.addAttribute("pecasDeRoupaCalc", fachada.consultarPecasDeRoupaPeloTipo("Calcado"));
+
+        for (PecaDeRoupa pecaDeRoupa : pecasDeRoupa) {
+            switch (pecaDeRoupa.getTipo()) {
+                case "Superior":
+                    model.addAttribute("sup", pecaDeRoupa);
+                    break;
+                case "Inferior":
+                    model.addAttribute("inf", pecaDeRoupa);
+                    break;
+                case "Calcado":
+                    model.addAttribute("calc", pecaDeRoupa);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        return "TelaEditarLook";
+    }
+
     @GetMapping("/{id}/delete")
-	public String deletarPecaDeRoupa(@PathVariable Long id) {
-		fachada.deletarLook(id);
-		return "redirect:/looks";
-	}
+    public String deletarPecaDeRoupa(@PathVariable Long id) {
+        fachada.deletarLook(id);
+        return "redirect:/looks";
+    }
 
     @GetMapping("/{id}/view")
-        public String verLook(@PathVariable Long id, Model model){
-            model.addAttribute("imgUtil", new ImageUtil());
-            model.addAttribute("pecasDeRoupa", fachada.getPecasDeRoupaByLook(id));
-            model.addAttribute("look", fachada.consultarLookPeloId(id));
-            return "TelaVerLook";
-        }
-    
-}
+    public String verLook(@PathVariable Long id, Model model) {
+        model.addAttribute("imgUtil", new ImageUtil());
+        model.addAttribute("pecasDeRoupa", fachada.getPecasDeRoupaByLook(id));
+        model.addAttribute("look", fachada.consultarLookPeloId(id));
+        return "TelaVerLook";
+    }
 
+}
