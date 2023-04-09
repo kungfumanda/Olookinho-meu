@@ -1,5 +1,6 @@
 package br.com.aps.olookinhomeu.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -124,7 +125,27 @@ public class LookController {
     @GetMapping("/{id}/view")
     public String verLook(@PathVariable Long id, Model model) {
         model.addAttribute("imgUtil", new ImageUtil());
-        model.addAttribute("pecasDeRoupa", fachada.getPecasDeRoupaByLook(id));
+
+        PecaDeRoupa[] pecasOrdenadas = new PecaDeRoupa[3];
+        Set<PecaDeRoupa> pecasDeRoupa = fachada.getPecasDeRoupaByLook(id);
+
+        for (PecaDeRoupa pecaDeRoupa : pecasDeRoupa) {
+            switch (pecaDeRoupa.getTipo()) {
+                case "Superior":
+                    pecasOrdenadas[0] = pecaDeRoupa;
+                    break;
+                case "Inferior":
+                    pecasOrdenadas[1] = pecaDeRoupa;
+                    break;
+                case "Calcado":
+                    pecasOrdenadas[2] = pecaDeRoupa;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        model.addAttribute("pecasDeRoupa", pecasOrdenadas);
         model.addAttribute("look", fachada.consultarLookPeloId(id));
         return "TelaVerLook";
     }

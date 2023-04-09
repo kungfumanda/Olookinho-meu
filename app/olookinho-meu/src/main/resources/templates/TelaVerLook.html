@@ -10,13 +10,16 @@
   </head>
 
   <body>
-    <button class="btn btn-outline-info col-2 mt-2 ml-2" onclick="history.back()">
+    <button
+      class="btn btn-outline-info col-2 mt-2 ml-2"
+      onclick="history.back()"
+    >
       Voltar
     </button>
     <div class="align-items-center d-flex flex-column">
       <h1 class="mt-5" th:text="${look.nome}"></h1>
       <div class="d-flex justify-content-around mt-5">
-        <div th:if="${pecasDeRoupa.size > 0}" th:each="peca : ${pecasDeRoupa}">
+        <div th:each="peca : ${pecasDeRoupa}">
           <div class="m-5">
             <span th:text="${peca.tipo}"></span>
             <h1 th:text="${peca.nome}"></h1>
