@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.*;
 
 import br.com.aps.olookinhomeu.model.PecaDeRoupa.Factories.*;
+import br.com.aps.olookinhomeu.model.util.ImageUtil;
 
 @Component
 public class CadastroPecaDeRoupa {
@@ -16,6 +17,8 @@ public class CadastroPecaDeRoupa {
     Factory fabricaSuperior = new FabricaPecaDeRoupaSuperior();
     Factory fabricaInferior = new FabricaPecaDeRoupaInferior();
     Factory fabricaCalcado = new FabricaCalcado();
+
+    ImageUtil imageUtil = new ImageUtil();
 
     @Autowired
     private IRepositorioPecaDeRoupa repositorioPecaDeRoupa;
@@ -26,20 +29,10 @@ public class CadastroPecaDeRoupa {
         pecaDeRoupa.setNome(nome);
 
         if (imagem != null) {
-            setImagem(pecaDeRoupa, imagem);
+            pecaDeRoupa = imageUtil.setImagem(pecaDeRoupa, imagem);
         }
 
         repositorioPecaDeRoupa.addPecaDeRoupa(pecaDeRoupa);
-    }
-
-    private void setImagem(PecaDeRoupa pecaDeRoupa, MultipartFile imagem) throws IOException {
-        String fileName = StringUtils.cleanPath(imagem.getOriginalFilename());
-        try {
-            pecaDeRoupa.setNomeImagem(fileName);
-            pecaDeRoupa.setImagem(imagem.getBytes());
-        } catch (IOException ex) {
-            throw new IOException("Could not store file " + fileName);
-        }
     }
 
     public void deletarPecaDeRoupa(Long id) {
@@ -50,7 +43,7 @@ public class CadastroPecaDeRoupa {
         return repositorioPecaDeRoupa.consultarPecasDeRoupa();
     }
 
-    public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo){
+    public List<PecaDeRoupa> consultarPecasDeRoupaPeloTipo(String tipo) {
         return repositorioPecaDeRoupa.consultarPecasDeRoupaPeloTipo(tipo);
     }
 
@@ -77,19 +70,11 @@ public class CadastroPecaDeRoupa {
         return pecaDeRoupa;
     }
 
-    public void editarPecaDeRoupa(Long id, String nome, String tipo, MultipartFile imagemData) throws IOException {
-        PecaDeRoupa pecaDeRoupa = consultarPecaDeRoupaPeloId(id);
-        PecaDeRoupa editedPecaDeRoupa = null;
-        if (tipo != pecaDeRoupa.getTipo()) {
-            editedPecaDeRoupa = gerarPecadeRoupa(tipo);
-        } else {
-            editedPecaDeRoupa = gerarPecadeRoupa(pecaDeRoupa.getTipo());
-        }
-        editedPecaDeRoupa.setNome(nome);
-        if (imagemData != null) {
-            setImagem(editedPecaDeRoupa, imagemData);
+    public void editarPecaDeRoupa(PecaDeRoupa pecaDeRoupa) throws Exception {
+        if (consultarPecaDeRoupaPeloId(pecaDeRoupa.getId()) == null) {
+            throw new Exception("Nao existe roupa com o id informado");
         }
 
-        repositorioPecaDeRoupa.salvarPecaDeRoupa(editedPecaDeRoupa);
+        repositorioPecaDeRoupa.salvarPecaDeRoupa(pecaDeRoupa);
     }
 }

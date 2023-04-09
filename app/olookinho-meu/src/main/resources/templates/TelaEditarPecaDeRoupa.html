@@ -15,33 +15,39 @@
       <form
         class="form"
         id="editarPecaDeRoupa"
-        action="#"
-        th:action="@{/pecas-de-roupa/edit/{id}(id=${id})}"
+        action = "#"
+        th:action="@{/pecas-de-roupa/{id}/edit(id=${pecaDeRoupa.id})}"
         th:object="${pecaDeRoupa}"
-        method="PUT"
+        method="POST"
         enctype="multipart/form-data"
       >
         <div>
-          <label for="nome">nome:</label>
+          <tr th:if="${pecaDeRoupa.id}">
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${pecaDeRoupa.id}">...</td>   
+        </tr>
+        </div> <p></p>
+        <div>
+          <label for="nome">Nome da Peça:</label>
           <input
             type="text"
             th:field="*{nome}"
             th:value="${nome}"
-            id="nome"
-            name="nome"
-            placeholder="Nome da Peca de Roupa"
             class="form-control mb-4 col-4"
             required
           />
         </div>
         <div>
-          <label for="tipo_peca_de_roupa">tipo_peca_de_roupa:</label>
+          <label for="tipo">Tipo da Peça:</label>
           <select
-            id="tipo_peca_de_roupa"
+            id="tipo"
+            class="form-control mb-4 col-4"
             th:field="*{tipo}"
             th:value="${tipo}"
-            form="cadastrarPecaDeRoupa"
+            form="editarPecaDeRoupa"
             name="tipo"
+            disabled
           >
             <option value="Superior">Superior</option>
             <option value="Inferior">Inferior</option>
@@ -53,7 +59,7 @@
           <input
             type="file"
             id="imagem"
-            th:field="*{nomeImagem}"
+            class="form-control mb-4 col-4"
             th:value="${imagem}"
             accept="image/*"
             name="imagem"
@@ -61,12 +67,16 @@
           />
         </div>
 
-        <div id="imagePreview"></div>
+        <div id="imagePreview">
+          <td th:if="${pecaDeRoupa.imagem != null}">
+            <img class='img-thumbnail' th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(pecaDeRoupa.imagem)}" width="40" height="40" />
+        </td>
+        </div>
         
         <input type="hidden" th:field="*{id}">
 
         <button type="submit" class="btn btn-info col-2 mt-2">Salvar alterações</button>
-        <button class="btn btn-outline-info col-2 mt-2" onclick="window.history.back()"> Voltar</button>
+        <a th:href="@{/pecas-de-roupa}" class="btn btn-outline-info col-2 mt-2">Voltar</a>
 
         
     </form>
