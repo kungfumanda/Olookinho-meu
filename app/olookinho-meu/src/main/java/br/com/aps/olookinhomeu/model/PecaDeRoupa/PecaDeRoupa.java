@@ -31,6 +31,12 @@ public class PecaDeRoupa {
 
     @ManyToMany(mappedBy = "pecasDeRoupa")
     private Set<Look> looks = new HashSet<>();
+    
+    public void removeLook(Look look){
+        if (looks.remove(look)){
+            look.removerPecasDeRoupa(this);
+        }
+    }
 
     public Long getId() {
         return id;

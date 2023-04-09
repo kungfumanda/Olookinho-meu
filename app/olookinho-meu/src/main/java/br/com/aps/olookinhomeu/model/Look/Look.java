@@ -18,7 +18,7 @@ public class Look {
     @Column(name = "nome")
     private String nome;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "Look_PecaDeRoupa", joinColumns = { @JoinColumn(name = "LookId") }, inverseJoinColumns = {
             @JoinColumn(name = "PecaDeRoupaId") })
     private Set<PecaDeRoupa> pecasDeRoupa = new HashSet<>();

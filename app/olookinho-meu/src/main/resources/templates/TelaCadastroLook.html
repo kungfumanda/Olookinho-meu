@@ -36,7 +36,7 @@
             <div class="d-flex flex-row justify-content-between">
               <div>
                 <label>Selecione a Peca de Roupa Superior</label>
-                <select class="form-control " th:value="${sup_id}" form="cadastrarLook" name="pecaSup">
+                <select class="form-control " th:value="${sup_id}" form="cadastrarLook" name="pecaSup" required>
                   <option disabled selected>Selecione uma Peca</option>
                   <option
                     th:each="peca : ${pecasDeRoupaSup}"
@@ -48,7 +48,7 @@
               </div>
               <div>
                 <label>Selecione a Peca de Roupa Inferior</label>
-                <select class="form-control" th:value="${inf_id}" form="cadastrarLook" name="pecaInf">
+                <select class="form-control" th:value="${inf_id}" form="cadastrarLook" name="pecaInf" required>
                   <option disabled selected>Selecione uma Peca</option>
                   <option
                     th:each="peca : ${pecasDeRoupaInf}"
@@ -60,7 +60,7 @@
               </div>
               <div>
                 <label>Selecione o Calcado</label>
-                <select class="form-control" th:value="${calc_id}" form="cadastrarLook" name="pecaCalc">
+                <select class="form-control" th:value="${calc_id}" form="cadastrarLook" name="pecaCalc" required>
                   <option disabled selected>Selecione um Calcado</option>
                   <option
                     th:each="peca : ${pecasDeRoupaCalc}"

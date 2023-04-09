@@ -15,7 +15,6 @@ public class RepositorioPecaDeRoupa implements IRepositorioPecaDeRoupa {
 	@Override
 	public void deletarPecaDeRoupa(Long id) {
 		pecaDeRoupaDAO.deleteById(id);
-		
 	}
 
 	@Override
