@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Component
 public class PecaDeRoupaServiceAPI implements IPecaDeRoupaService {
 
-    @Value("${account_service_url}")
+    @Value("${peca_de_roupa_service_url}")
     private String accountServiceUrl;
 
     private WebClient client() {
