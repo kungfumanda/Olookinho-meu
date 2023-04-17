@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div>
+      <div>
+        <h1>Lista de Pecas</h1>
+      </div>
+    <div>
+        <a th:href="@{/pecas-de-roupa/new}" class="btn btn-primary btn-sm mb-3"> Add Peca de Roupa </a>
+        <a th:href="@{/}" class="btn btn-secondary btn-sm mb-3"> Voltar </a>
+        <table class="table" th:if="${pecasDeRoupa.size > 0}">
+            <thead>
+            <tr>
+                <th>Nome da Peca</th>
+                <th>Tipo da Peca</th>
+                <th>imagem</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="peca : ${pecasDeRoupa}">
+                <td th:text="${peca.nome}"></td>
+                <td th:text="${peca.tipo}"></td>
+                <td th:if="${peca.imagem != null}">
+                    <img class='img-thumbnail' th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(peca.imagem)}" width="40" height="40" />
+                </td>
+                <td th:unless="${peca.imagem != null}">Sem imagem</td>
+                <td><a th:href="@{/pecas-de-roupa/{id}/edit(id=${peca.id})}">Editar</a></td>
+                <td><a th:href="@{/pecas-de-roupa/{id}/delete(id=${peca.id})}">Deletar</a></td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+    <p style="color: red;" th:if="${pecasDeRoupa.size == 0}">Não temos pecas de roupas.</p>
+
+    </div>
+  </body>
+</html>

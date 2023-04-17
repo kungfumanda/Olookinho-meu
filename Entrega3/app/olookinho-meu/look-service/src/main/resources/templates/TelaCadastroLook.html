@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Cadastrar Look</h1>
+      <form
+        class="form"
+        id="cadastrarLook"
+        action="#"
+        th:action="@{/looks/new}"
+        th:object="${Look}"
+        method="POST"
+      >
+        <div>
+          <label for="nome">Nome do Look:</label>
+          <input
+            type="text"
+            th:value="${nome}"
+            id="nome"
+            name="nome"
+            placeholder="Nome do Look"
+            class="form-control mb-4 col-4"
+            required
+          />
+
+          <div class="mb-5">
+            <div class="d-flex flex-row justify-content-between">
+              <div>
+                <label>Selecione a Peca de Roupa Superior</label>
+                <select class="form-control " th:value="${sup_id}" form="cadastrarLook" name="pecaSup" required>
+                  <option disabled selected>Selecione uma Peca</option>
+                  <option
+                    th:each="peca : ${pecasDeRoupaSup}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                  >
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label>Selecione a Peca de Roupa Inferior</label>
+                <select class="form-control" th:value="${inf_id}" form="cadastrarLook" name="pecaInf" required>
+                  <option disabled selected>Selecione uma Peca</option>
+                  <option
+                    th:each="peca : ${pecasDeRoupaInf}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                  >
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label>Selecione o Calcado</label>
+                <select class="form-control" th:value="${calc_id}" form="cadastrarLook" name="pecaCalc" required>
+                  <option disabled selected>Selecione um Calcado</option>
+                  <option
+                    th:each="peca : ${pecasDeRoupaCalc}"
+                    th:value="${peca.id}"
+                    th:text="${peca.nome}"
+                  >
+                  </option>
+                </select>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info col-2 mt-2">
+          Cadastrar Look
+        </button>
+        <button
+          class="btn btn-outline-info col-2 mt-2"
+          onclick="history.back()"
+        >
+          Voltar
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

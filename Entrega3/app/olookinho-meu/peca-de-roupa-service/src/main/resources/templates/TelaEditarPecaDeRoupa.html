@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Editar Peca de Roupa</h1>
+      <form
+        class="form"
+        id="editarPecaDeRoupa"
+        action = "#"
+        th:action="@{/pecas-de-roupa/{id}/edit(id=${pecaDeRoupa.id})}"
+        th:object="${pecaDeRoupa}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div>
+          <tr th:if="${pecaDeRoupa.id}">
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${pecaDeRoupa.id}">...</td>   
+        </tr>
+        </div> <p></p>
+        <div>
+          <label for="nome">Nome da Peça:</label>
+          <input
+            type="text"
+            th:field="*{nome}"
+            th:value="${nome}"
+            class="form-control mb-4 col-4"
+            required
+          />
+        </div>
+        <div>
+          <label for="tipo">Tipo da Peça:</label>
+          <select
+            id="tipo"
+            class="form-control mb-4 col-4"
+            th:field="*{tipo}"
+            th:value="${tipo}"
+            form="editarPecaDeRoupa"
+            name="tipo"
+            disabled
+          >
+            <option value="Superior">Superior</option>
+            <option value="Inferior">Inferior</option>
+            <option value="Calcado">Calcado</option>
+          </select>
+        </div>
+        <div>
+          <label for="imagem">imagem:</label>
+          <input
+            type="file"
+            id="imagem"
+            class="form-control mb-4 col-4"
+            th:value="${imagem}"
+            accept="image/*"
+            name="imagem"
+            onchange="previewImage(event)"
+          />
+        </div>
+
+        <div id="imagePreview">
+          <td th:if="${pecaDeRoupa.imagem != null}">
+            <img class='img-thumbnail' th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(pecaDeRoupa.imagem)}" width="40" height="40" />
+        </td>
+        </div>
+        
+        <input type="hidden" th:field="*{id}">
+
+        <button type="submit" class="btn btn-info col-2 mt-2">Salvar alterações</button>
+        <a th:href="@{/pecas-de-roupa}" class="btn btn-outline-info col-2 mt-2">Voltar</a>
+
+        
+    </form>
+
+      <script type="text/javascript">
+        function previewImage(event) {
+          var preview = document.getElementById('imagePreview');
+          preview.innerHTML = '';
+          if (event.target.files && event.target.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              var img = document.createElement('img');
+              img.src = e.target.result;
+              img.setAttribute('style', 'max-width: 300px; max-height: 300px;');
+              preview.appendChild(img);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

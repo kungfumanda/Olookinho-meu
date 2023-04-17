@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div>
+      <div>
+        <h1>Lista de Looks</h1>
+      </div>
+      <a th:href="@{/looks/new}" class="btn btn-primary btn-sm mb-3"> Add Look </a>
+      <a th:href="@{/}" class="btn btn-secondary btn-sm mb-3"> Voltar </a>
+      <table class="table" th:if="${looks.size > 0}">
+        <thead>
+          <tr>
+            <th>Nome do Look</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="look : ${looks}">
+            <td th:text="${look.nome}"></td>
+            <td><a th:href="@{/looks/{id}/view(id=${look.id})}">View</a></td>
+            <td><a th:href="@{/looks/{id}/delete(id=${look.id})}">Deletar</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="color: red;" th:if="${looks.size == 0}">Não temos looks.</p>
+    </div>
+  </body>
+</html>
